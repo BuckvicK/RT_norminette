@@ -276,6 +276,8 @@ void			set_arrows_pos(t_rtv1 *rtv1, int mode);
 
 
 double ray_intersect_arrow(t_vector start, t_vector dir, t_obj *cyl);
+double ray_intersect_paraboloid(t_vector start, t_vector dir, t_obj *parab);
+double ray_intersect_triangle(t_vector start, t_vector dir, t_obj *triangle);
 
 
 void save(t_rtv1 *rtv1, char *filename);
