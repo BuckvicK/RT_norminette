@@ -12,13 +12,11 @@
 
 #include "rtv1.h"
 
-void	edit_mouse_release(int button, int x, int y, t_rtv1 *rtv1)
+void	edit_mouse_release_1(t_rtv1 *rtv1)
 {
-	(void)x;
-	(void)y;
-	(void)button;
+	int	i;
 
-    int i = 0;
+	i = 0;
 	while (i < rtv1->c_selector_buttons)
 	{
 		(rtv1->selector_buttons)[i].is_pressed = 0;
@@ -30,6 +28,15 @@ void	edit_mouse_release(int button, int x, int y, t_rtv1 *rtv1)
 		(rtv1->edit_buttons)[i].is_pressed = 0;
 		i++;
 	}
+}
+
+void	edit_mouse_release(int button, int x, int y, t_rtv1 *rtv1)
+{
+	int	i;
+	int	j;
+
+	x = y;
+	button = x;
     i = 0;
     while (i < rtv1->c_buttons)
 	{
@@ -39,7 +46,7 @@ void	edit_mouse_release(int button, int x, int y, t_rtv1 *rtv1)
     i = 0;
 	while (i < rtv1->c_lists)
 	{
-		int j = 0;
+		j = 0;
 		while (j < rtv1->lists[i].c_items)
 		{
 			(rtv1->lists)[i].items[j].is_pressed = 0;
@@ -47,5 +54,4 @@ void	edit_mouse_release(int button, int x, int y, t_rtv1 *rtv1)
 		}
 		i++;
 	}
-
 }
