@@ -12,7 +12,8 @@
 
 #include "LIBUI.h"
 
-void LIBUI_DisactiveAll(t_LIBUI_Edit *edits, int c_edits, t_LIBUI_List *lists, int c_lists)
+void LIBUI_DisactiveAll(t_LIBUI_Edit *edits, int c_edits,
+                        t_LIBUI_List *lists, int c_lists)
 {
     int i;
 
