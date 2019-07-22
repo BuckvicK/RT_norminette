@@ -14,7 +14,7 @@
 
 int		clean_exit(t_rtv1 *rtv1)
 {
-	
+	(void)rtv1;
 	exit(-2);
 }
 
