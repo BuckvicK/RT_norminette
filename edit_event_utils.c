@@ -35,8 +35,8 @@ void	edit_mouse_release(int button, int x, int y, t_rtv1 *rtv1)
 	int	i;
 	int	j;
 
-	x = y;
-	button = x;
+	x = y + button;
+	edit_mouse_release_1(rtv1);
     i = 0;
     while (i < rtv1->c_buttons)
 	{
