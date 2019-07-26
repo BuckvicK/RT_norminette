@@ -16,7 +16,7 @@ t_list_item_addr list_utils(t_rtv1 *rtv1, int x, int y)
 {
 	t_list_item_addr ret;
 
-	ret = LIBUI_IsListPressed(x - CH, y, rtv1->lists, rtv1->c_lists);
+	ret = libui_IsListPressed(x - CH, y, rtv1->lists, rtv1->c_lists);
 	return(ret);
 }
 
@@ -41,18 +41,18 @@ int	mouse_pressed(int button, int x, int y, t_rtv1 *rtv1)
 		{
 
 
-			pressed_button = LIBUI_IsButtonPressed(x - CH, y, rtv1->buttons, rtv1->c_buttons);
+			pressed_button = libui_IsButtonPressed(x - CH, y, rtv1->buttons, rtv1->c_buttons);
 			if (pressed_button == -1)
 			{
 				t_list_item_addr ret;
 				ret = list_utils(rtv1, x, y);
 				if (ret.item == -1)
 				{
-					rtv1->active_edit = LIBUI_IsEditPressed(x - CH, y, rtv1->edits, rtv1->c_edits);
+					rtv1->active_edit = libui_IsEditPressed(x - CH, y, rtv1->edits, rtv1->c_edits);
 
 					if (rtv1->active_edit == -1)
 					{
-						LIBUI_DisactiveAll(rtv1->edits, rtv1->c_edits, rtv1->lists, rtv1->c_lists);
+						libui_DisactiveAll(rtv1->edits, rtv1->c_edits, rtv1->lists, rtv1->c_lists);
 						return (0);
 					}
 				}
@@ -394,7 +394,7 @@ int	key_pressed(int key, t_rtv1 *rtv1)
 	if (key == SDLK_ESCAPE)
 		exit(1);
 	else if (rtv1->active_edit != -1)
-		LIBUI_InputLetter(key, rtv1->edits, rtv1->active_edit, rtv1->shift_pressed);
+		libui_InputLetter(key, rtv1->edits, rtv1->active_edit, rtv1->shift_pressed);
 	else if (key == SDLK_RIGHT)
 	{
 		rtv1->scene.camera.center.x += 0.5 * cos(rtv1->scene.view_beta);

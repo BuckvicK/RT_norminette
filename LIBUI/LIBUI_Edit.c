@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   LIBUI_Edit.c                                       :+:      :+:    :+:   */
+/*   libui_Edit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chorange <chorange@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "LIBUI.h"
+#include "libui.h"
 
-void			libui_create_edit_1(t_LIBUI_Edit *edit, SDL_Surface *text)
+void			libui_create_edit_1(t_libui_Edit *edit, SDL_Surface *text)
 {
 	edit->with_text = SDL_CreateRGBSurface(0, 100, 30, 32, 0, 0, 0, 0);
 	edit->with_text_active = SDL_CreateRGBSurface(0, 100, 30, 32, 0, 0, 0, 0);
@@ -24,9 +24,9 @@ void			libui_create_edit_1(t_LIBUI_Edit *edit, SDL_Surface *text)
 		edit->with_text_active, NULL);
 }
 
-t_LIBUI_Edit	LIBUI_CreateEdit(t_edit_constr input)
+t_libui_Edit	libui_CreateEdit(t_edit_constr input)
 {
-	t_LIBUI_Edit	edit;
+	t_libui_Edit	edit;
 	SDL_Surface		*text;
 	TTF_Font		*font;
 
@@ -49,14 +49,14 @@ t_LIBUI_Edit	LIBUI_CreateEdit(t_edit_constr input)
 	return(edit);
 }
 
-void			LIBUI_NewEdit(t_edit_constr edit, t_LIBUI_Edit *edits,
+void			libui_NewEdit(t_edit_constr edit, t_libui_Edit *edits,
 								int *c_edits)
 {
-	edits[*c_edits] = LIBUI_CreateEdit(edit);
+	edits[*c_edits] = libui_CreateEdit(edit);
 	(*c_edits)++;
 }
 
-int				LIBUI_IsEditPressed(int x, int y, t_LIBUI_Edit *edits,
+int				libui_IsEditPressed(int x, int y, t_libui_Edit *edits,
 								int c_edits)
 {
 	int i;
@@ -75,7 +75,7 @@ int				LIBUI_IsEditPressed(int x, int y, t_LIBUI_Edit *edits,
 	return (-1);
 }
 
-void			LIBUI_EditRefresh(t_LIBUI_Edit *edits, int number)
+void			libui_EditRefresh(t_libui_Edit *edits, int number)
 {
 	TTF_Font	*font;
 	SDL_Surface	*text;

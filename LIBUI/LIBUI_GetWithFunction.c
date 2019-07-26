@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   LIBUI_GetWithFunction.c                            :+:      :+:    :+:   */
+/*   libui_GetWithFunction.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chorange <chorange@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "LIBUI.h"
+#include "libui.h"
 
-int		LIBUI_GetButtonWithFunction(t_LIBUI_Button *buttons, int c_buttons,
+int		libui_GetButtonWithFunction(t_libui_Button *buttons, int c_buttons,
 								char *function)
 {
 	int		i;
@@ -27,7 +27,7 @@ int		LIBUI_GetButtonWithFunction(t_LIBUI_Button *buttons, int c_buttons,
 	return (-1);
 }
 
-int		LIBUI_GetListWithFunction(t_LIBUI_List *lists, int c_lists,
+int		libui_GetListWithFunction(t_libui_List *lists, int c_lists,
 								char *function)
 {
 	int		i;
@@ -42,7 +42,7 @@ int		LIBUI_GetListWithFunction(t_LIBUI_List *lists, int c_lists,
 	return (-1);
 }
 
-int		LIBUI_GetEditWithFunction(t_LIBUI_Edit *edits, int c_edits,
+int		libui_GetEditWithFunction(t_libui_Edit *edits, int c_edits,
 								char *function)
 {
 	int		i;

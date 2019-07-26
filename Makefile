@@ -20,7 +20,7 @@ OBJECTS = main.o init.o vect_math1.o vect_math2.o color.o read_scene1.o atof.o\
 	md5.o itoa_16.o read_obj.o edit.o edit_event_utils.o scene_selector.o \
 	selector_event_utils.o new_light.o edit_event_utils_1.o vect_math3.o
 
-LIBS = -L./libft -lft -L./LIBUI/ -lui -lm -framework OpenGL\
+LIBS = -L./libft -lft -L./libui/ -lui -lm -framework OpenGL\
 	-framework AppKit -framework OpenCL -framework OpenGL
 
 INCLUDES = -I./libft/ -I./frameworks/SDL2.framework/Headers
@@ -28,7 +28,7 @@ INCLUDES = -I./libft/ -I./frameworks/SDL2.framework/Headers
 FRAMEWORKS = -F./frameworks -rpath ./frameworks -framework SDL2 -framework SDL2_ttf -framework SDL2_mixer -framework SDL2_image
 
 FTPATH = ./libft
-UIPATH = ./LIBUI
+UIPATH = ./libui
 
 all: $(NAME)
 

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   LIBUI_Disactive.c                                  :+:      :+:    :+:   */
+/*   libui_Disactive.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chorange <chorange@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "LIBUI.h"
+#include "libui.h"
 
-void LIBUI_DisactiveAll(t_LIBUI_Edit *edits, int c_edits,
-                        t_LIBUI_List *lists, int c_lists)
+void libui_DisactiveAll(t_libui_Edit *edits, int c_edits,
+                        t_libui_List *lists, int c_lists)
 {
     int i;
 

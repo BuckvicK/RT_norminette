@@ -19,7 +19,7 @@
 # include "libft/libft.h"
 # include "frameworks/SDL2.framework/Headers/SDL.h"
 # include "frameworks/SDL2_image.framework/Headers/SDL_image.h"
-# include "LIBUI/LIBUI.h"
+# include "libui/libui.h"
 # include <pthread.h>
 
 # define MAX_SOURCE_SIZE 40000
@@ -148,7 +148,7 @@ typedef struct	s_rtv1
 	SDL_Renderer		*edit_renderer;
 	SDL_Texture			*edit_texture;
 
-	t_LIBUI_Button		edit_buttons[30];
+	t_libui_Button		edit_buttons[30];
 	int					c_edit_buttons;
 
 	SDL_Surface			*selector_surface;
@@ -156,7 +156,7 @@ typedef struct	s_rtv1
 	SDL_Renderer		*selector_renderer;
 	SDL_Texture			*selector_texture;
 
-	t_LIBUI_Button		selector_buttons[200];
+	t_libui_Button		selector_buttons[200];
 	int					c_selector_buttons;
 
 	int					selector_window_active;
@@ -164,9 +164,9 @@ typedef struct	s_rtv1
 
 	int					next_win_ID;
 
-	t_LIBUI_Button		buttons[40];
-	t_LIBUI_List		lists[5];
-	t_LIBUI_Edit		edits[5];
+	t_libui_Button		buttons[40];
+	t_libui_List		lists[5];
+	t_libui_Edit		edits[5];
 	int					c_edits;
 	int					c_buttons;
 	int					c_lists;

@@ -2,7 +2,7 @@
 
 void selector_mouse_pressed(int button, int x, int y, t_rtv1 *rtv1)
 {
-    int pressed_button = LIBUI_IsButtonPressed(x, y, rtv1->selector_buttons, rtv1->c_selector_buttons);
+    int pressed_button = libui_IsButtonPressed(x, y, rtv1->selector_buttons, rtv1->c_selector_buttons);
     char func[64];
     int  id;
     if (pressed_button == -1)

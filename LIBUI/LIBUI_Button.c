@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   LIBUI_Button.c                                     :+:      :+:    :+:   */
+/*   libui_Button.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chorange <chorange@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "LIBUI.h"
+#include "libui.h"
 
-t_LIBUI_Button	LIBUI_CreateButton(t_but_constr input)
+t_libui_Button	libui_CreateButton(t_but_constr input)
 {
-	t_LIBUI_Button	button;
+	t_libui_Button	button;
 
 	button.is_pressed = 0;
 	button.x = input.x;
@@ -37,14 +37,14 @@ t_LIBUI_Button	LIBUI_CreateButton(t_but_constr input)
 	return (button);
 }
 
-void			LIBUI_NewButton(t_but_constr button, t_LIBUI_Button *buttons,
+void			libui_NewButton(t_but_constr button, t_libui_Button *buttons,
 								int *c_buttons)
 {
-	buttons[*c_buttons] = LIBUI_CreateButton(button);
+	buttons[*c_buttons] = libui_CreateButton(button);
 	(*c_buttons)++;
 }
 
-int				LIBUI_IsButtonPressed(int x, int y, t_LIBUI_Button *buttons,
+int				libui_IsButtonPressed(int x, int y, t_libui_Button *buttons,
 										int c_buttons)
 {
 	int i;

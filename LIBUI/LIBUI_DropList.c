@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   LIBUI_DropList.c                                   :+:      :+:    :+:   */
+/*   libui_DropList.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chorange <chorange@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "LIBUI.h"
+#include "libui.h"
 
 /*
 ** void		ft_redraw(void *rtv1_tmp)
@@ -24,11 +24,11 @@
 ** 	rect.h = 200;
 ** 	if (rtv1->list->expand == 1)
 ** 	{
-** 		LIBUI_NewButton((t_but_constr){rtv1->list->x, rtv1->list->y + 30, \
+** 		libui_NewButton((t_but_constr){rtv1->list->x, rtv1->list->y + 30, \
 ** 	"Texture1", "Texture1", 0x0000ff55}, rtv1->buttons, &(rtv1->list->end));
-** 		LIBUI_NewButton((t_but_constr){rtv1->list->x, rtv1->list->y + 60, \
+** 		libui_NewButton((t_but_constr){rtv1->list->x, rtv1->list->y + 60, \
 ** 	"Texture2", "Texture2", 0x0000ff55}, rtv1->buttons, &(rtv1->list->end));
-** 		LIBUI_NewButton((t_but_constr){rtv1->list->x, rtv1->list->y + 90, \
+** 		libui_NewButton((t_but_constr){rtv1->list->x, rtv1->list->y + 90, \
 ** 	"Texture3", "Texture3", 0x0000ff55}, rtv1->buttons, &(rtv1->list->end));
 ** 	}
 ** 	else
@@ -40,14 +40,14 @@
 ** 	rtv1->c_buttons = rtv1->list->end;
 ** }
 ** 
-** void		LIBUI_drop_list(void *tmp_rtv1, int x, int y)
+** void		libui_drop_list(void *tmp_rtv1, int x, int y)
 ** {
 ** 	t_rtv1	*rtv1;
 ** 
 ** 	rtv1 = (t_rtv1*)tmp_rtv1;
 ** 	rtv1->list->x = x;
 ** 	rtv1->list->y = y;
-** 	LIBUI_NewButton((t_but_constr){x, y, "List", "Expand", \
+** 	libui_NewButton((t_but_constr){x, y, "List", "Expand", \
 ** 							0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
 ** 	rtv1->list->expand = 0;
 ** 	rtv1->list->start = rtv1->c_buttons;
@@ -56,8 +56,8 @@
 ** 	rtv1->list->ft_redraw(rtv1);
 ** }
 */
-t_list_item_addr	LIBUI_IsListPressed(int x, int y,
-					t_LIBUI_List *lists, int c_lists)
+t_list_item_addr	libui_IsListPressed(int x, int y,
+					t_libui_List *lists, int c_lists)
 {
 	int					i;
 	t_list_item_addr	ret;
@@ -67,7 +67,7 @@ t_list_item_addr	LIBUI_IsListPressed(int x, int y,
 	while (i < c_lists)
 	{
 		ret.list = i;
-		ret.item = LIBUI_IsButtonPressed(x, y, lists[i].items,
+		ret.item = libui_IsButtonPressed(x, y, lists[i].items,
 										lists[i].c_items);
 		if (!lists[i].is_dropped && ret.item != 0)
 			ret.item = -1;
@@ -78,7 +78,7 @@ t_list_item_addr	LIBUI_IsListPressed(int x, int y,
 	return (ret);
 }
 
-void				LIBUI_help_func(t_but_constr tmp, t_LIBUI_List *list,
+void				libui_help_func(t_but_constr tmp, t_libui_List *list,
 						t_list_constr input)
 {
 	int		i;
@@ -91,14 +91,14 @@ void				LIBUI_help_func(t_but_constr tmp, t_LIBUI_List *list,
 		tmp.text = input.items_text[i];
 		tmp.function = input.items_function[i];
 		tmp.color = input.color;
-		LIBUI_NewButton(tmp, list->items, &(list->c_items));
+		libui_NewButton(tmp, list->items, &(list->c_items));
 		i++;
 	}
 }
 
-t_LIBUI_List		LIBUI_CreateList(t_list_constr input)
+t_libui_List		libui_CreateList(t_list_constr input)
 {
-	t_LIBUI_List	list;
+	t_libui_List	list;
 	t_but_constr	tmp;
 
 	list.x = input.x;
@@ -109,17 +109,17 @@ t_LIBUI_List		LIBUI_CreateList(t_list_constr input)
 	tmp.text = input.text;
 	tmp.function = input.function;
 	tmp.color = input.color;
-	list.items = (t_LIBUI_Button *)malloc(sizeof(t_LIBUI_Button) *
+	list.items = (t_libui_Button *)malloc(sizeof(t_libui_Button) *
 		(input.c_items + 1));
-	list.items[0] = LIBUI_CreateButton(tmp);
+	list.items[0] = libui_CreateButton(tmp);
 	list.c_items = 1;
-	LIBUI_help_func(tmp, &list, input);
+	libui_help_func(tmp, &list, input);
 	return (list);
 }
 
-void				LIBUI_NewList(t_list_constr list,
-					t_LIBUI_List *lists, int *c_lists)
+void				libui_NewList(t_list_constr list,
+					t_libui_List *lists, int *c_lists)
 {
-	lists[*c_lists] = LIBUI_CreateList(list);
+	lists[*c_lists] = libui_CreateList(list);
 	(*c_lists)++;
 }

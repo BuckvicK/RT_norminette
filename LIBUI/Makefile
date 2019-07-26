@@ -14,8 +14,8 @@ NAME = libui.a
 
 FLAGS = -Wextra -Wall -Werror
 
-OBJECTS  = LIBUI_Button.o LIBUI_DropList.o LIBUI_Edit.o LIBUI_Disactive.o\
-			LIBUI_KeyInput.o LIBUI_GetWithFunction.o
+OBJECTS  = libui_Button.o libui_DropList.o libui_Edit.o libui_Disactive.o\
+			libui_KeyInput.o libui_GetWithFunction.o
 
 INCLUDES = -I./frameworks/SDL2.framework/Headers
 
