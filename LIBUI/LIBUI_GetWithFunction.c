@@ -12,7 +12,7 @@
 
 #include "libui.h"
 
-int		libui_GetButtonWithFunction(t_libui_Button *buttons, int c_buttons,
+int		libui_GetButtonWithFunction(t_libui_button *buttons, int c_buttons,
 								char *function)
 {
 	int		i;

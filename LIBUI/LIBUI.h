@@ -55,7 +55,7 @@ typedef struct		s_libui_Button
 	SDL_Surface		*pressed;
 	char			function[64];
 	int				is_pressed;
-}					t_libui_Button;
+}					t_libui_button;
 
 typedef struct		s_libui_Edit
 {
@@ -75,7 +75,7 @@ typedef struct		s_libui_List
 	int				x;
 	int				y;
 	int				is_dropped;
-	t_libui_Button	*items;
+	t_libui_button	*items;
 	int				c_items;
 }					t_libui_List;
 
@@ -86,11 +86,11 @@ typedef struct		s_list_item_addr
 }					t_list_item_addr;
 
 void				libui_drop_list(void *rtv1, int x, int y);
-int					libui_IsButtonPressed(int x, int y,
-						t_libui_Button *buttons, int c_buttons);
-void				libui_NewButton(t_but_constr button,
-						t_libui_Button *buttons, int *c_buttons);
-t_libui_Button		libui_CreateButton(t_but_constr input);
+int					libui_isbuttonpressed(int x, int y,
+						t_libui_button *buttons, int c_buttons);
+void				libui_newbutton(t_but_constr button,
+						t_libui_button *buttons, int *c_buttons);
+t_libui_button		libui_createbutton(t_but_constr input);
 void				libui_NewList(t_list_constr list,
 						t_libui_List *lists, int *c_lists);
 t_list_item_addr	libui_IsListPressed(int x, int y,
@@ -104,7 +104,7 @@ void				libui_DisactiveAll(t_libui_Edit *edits, int c_edits,
 						t_libui_List *lists, int c_lists);
 void				libui_InputLetter(int key, t_libui_Edit *edits,
 						int number, int shift);
-int					libui_GetButtonWithFunction(t_libui_Button *buttons,
+int					libui_GetButtonWithFunction(t_libui_button *buttons,
 						int c_buttons, char *function);
 int					libui_GetListWithFunction(t_libui_List *lists,
 						int c_lists, char *function);

@@ -24,11 +24,11 @@
 ** 	rect.h = 200;
 ** 	if (rtv1->list->expand == 1)
 ** 	{
-** 		libui_NewButton((t_but_constr){rtv1->list->x, rtv1->list->y + 30, \
+** 		libui_newbutton((t_but_constr){rtv1->list->x, rtv1->list->y + 30, \
 ** 	"Texture1", "Texture1", 0x0000ff55}, rtv1->buttons, &(rtv1->list->end));
-** 		libui_NewButton((t_but_constr){rtv1->list->x, rtv1->list->y + 60, \
+** 		libui_newbutton((t_but_constr){rtv1->list->x, rtv1->list->y + 60, \
 ** 	"Texture2", "Texture2", 0x0000ff55}, rtv1->buttons, &(rtv1->list->end));
-** 		libui_NewButton((t_but_constr){rtv1->list->x, rtv1->list->y + 90, \
+** 		libui_newbutton((t_but_constr){rtv1->list->x, rtv1->list->y + 90, \
 ** 	"Texture3", "Texture3", 0x0000ff55}, rtv1->buttons, &(rtv1->list->end));
 ** 	}
 ** 	else
@@ -47,7 +47,7 @@
 ** 	rtv1 = (t_rtv1*)tmp_rtv1;
 ** 	rtv1->list->x = x;
 ** 	rtv1->list->y = y;
-** 	libui_NewButton((t_but_constr){x, y, "List", "Expand", \
+** 	libui_newbutton((t_but_constr){x, y, "List", "Expand", \
 ** 							0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
 ** 	rtv1->list->expand = 0;
 ** 	rtv1->list->start = rtv1->c_buttons;
@@ -67,7 +67,7 @@ t_list_item_addr	libui_IsListPressed(int x, int y,
 	while (i < c_lists)
 	{
 		ret.list = i;
-		ret.item = libui_IsButtonPressed(x, y, lists[i].items,
+		ret.item = libui_isbuttonpressed(x, y, lists[i].items,
 										lists[i].c_items);
 		if (!lists[i].is_dropped && ret.item != 0)
 			ret.item = -1;
@@ -91,7 +91,7 @@ void				libui_help_func(t_but_constr tmp, t_libui_List *list,
 		tmp.text = input.items_text[i];
 		tmp.function = input.items_function[i];
 		tmp.color = input.color;
-		libui_NewButton(tmp, list->items, &(list->c_items));
+		libui_newbutton(tmp, list->items, &(list->c_items));
 		i++;
 	}
 }
@@ -109,9 +109,9 @@ t_libui_List		libui_CreateList(t_list_constr input)
 	tmp.text = input.text;
 	tmp.function = input.function;
 	tmp.color = input.color;
-	list.items = (t_libui_Button *)malloc(sizeof(t_libui_Button) *
+	list.items = (t_libui_button *)malloc(sizeof(t_libui_button) *
 		(input.c_items + 1));
-	list.items[0] = libui_CreateButton(tmp);
+	list.items[0] = libui_createbutton(tmp);
 	list.c_items = 1;
 	libui_help_func(tmp, &list, input);
 	return (list);

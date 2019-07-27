@@ -41,7 +41,7 @@ int	mouse_pressed(int button, int x, int y, t_rtv1 *rtv1)
 		{
 
 
-			pressed_button = libui_IsButtonPressed(x - CH, y, rtv1->buttons, rtv1->c_buttons);
+			pressed_button = libui_isbuttonpressed(x - CH, y, rtv1->buttons, rtv1->c_buttons);
 			if (pressed_button == -1)
 			{
 				t_list_item_addr ret;

@@ -148,7 +148,7 @@ typedef struct	s_rtv1
 	SDL_Renderer		*edit_renderer;
 	SDL_Texture			*edit_texture;
 
-	t_libui_Button		edit_buttons[30];
+	t_libui_button		edit_buttons[30];
 	int					c_edit_buttons;
 
 	SDL_Surface			*selector_surface;
@@ -156,7 +156,7 @@ typedef struct	s_rtv1
 	SDL_Renderer		*selector_renderer;
 	SDL_Texture			*selector_texture;
 
-	t_libui_Button		selector_buttons[200];
+	t_libui_button		selector_buttons[200];
 	int					c_selector_buttons;
 
 	int					selector_window_active;
@@ -164,7 +164,7 @@ typedef struct	s_rtv1
 
 	int					next_win_ID;
 
-	t_libui_Button		buttons[40];
+	t_libui_button		buttons[40];
 	t_libui_List		lists[5];
 	t_libui_Edit		edits[5];
 	int					c_edits;

@@ -12,9 +12,9 @@
 
 #include "libui.h"
 
-t_libui_Button	libui_CreateButton(t_but_constr input)
+t_libui_button	libui_createbutton(t_but_constr input)
 {
-	t_libui_Button	button;
+	t_libui_button	button;
 
 	button.is_pressed = 0;
 	button.x = input.x;
@@ -37,14 +37,14 @@ t_libui_Button	libui_CreateButton(t_but_constr input)
 	return (button);
 }
 
-void			libui_NewButton(t_but_constr button, t_libui_Button *buttons,
+void			libui_newbutton(t_but_constr button, t_libui_button *buttons,
 								int *c_buttons)
 {
-	buttons[*c_buttons] = libui_CreateButton(button);
+	buttons[*c_buttons] = libui_createbutton(button);
 	(*c_buttons)++;
 }
 
-int				libui_IsButtonPressed(int x, int y, t_libui_Button *buttons,
+int				libui_isbuttonpressed(int x, int y, t_libui_button *buttons,
 										int c_buttons)
 {
 	int i;

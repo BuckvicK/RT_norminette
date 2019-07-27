@@ -29,7 +29,7 @@ void refresh_selector_buttons(t_rtv1 *rtv1)
             ft_strcat(str, " poly");
         
         if (id == 9999 && rtv1->scene.objs[i].type != triangle)     
-            libui_NewButton((t_but_constr){20, 20 + 35*i, str, str, 0x0000ff55}, rtv1->selector_buttons, &(rtv1->c_selector_buttons));
+            libui_newbutton((t_but_constr){20, 20 + 35*i, str, str, 0x0000ff55}, rtv1->selector_buttons, &(rtv1->c_selector_buttons));
         if (rtv1->scene.objs[i].type == triangle)
             id = rtv1->scene.objs[i].id;
         free(tmp);
@@ -49,7 +49,7 @@ void refresh_selector_buttons(t_rtv1 *rtv1)
             ft_strcat(str, " dir");
         else if (rtv1->scene.lights[i].type == ambient)
             ft_strcat(str, " amb");
-        libui_NewButton((t_but_constr){150, 20 + 35*i, str, str, 0x0000ff55}, rtv1->selector_buttons, &(rtv1->c_selector_buttons));
+        libui_newbutton((t_but_constr){150, 20 + 35*i, str, str, 0x0000ff55}, rtv1->selector_buttons, &(rtv1->c_selector_buttons));
         free(tmp);
         i++;
     }

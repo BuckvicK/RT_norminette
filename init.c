@@ -193,27 +193,27 @@ void		graphics_init(t_rtv1 *rtv1)
 	rtv1->c_buttons = 0;
 	rtv1->c_edits = 0;
 	rtv1->c_lists = 0;
-	libui_NewButton((t_but_constr){20, 20, "New Sphere", "New Sphere", 0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
-	libui_NewButton((t_but_constr){20, 60, "New Cylinder", "New Cylinder", 0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
-	libui_NewButton((t_but_constr){20, 100, "New Cone", "New Cone", 0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
-	libui_NewButton((t_but_constr){20, 140, "New Plane", "New Plane", 0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
+	libui_newbutton((t_but_constr){20, 20, "New Sphere", "New Sphere", 0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
+	libui_newbutton((t_but_constr){20, 60, "New Cylinder", "New Cylinder", 0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
+	libui_newbutton((t_but_constr){20, 100, "New Cone", "New Cone", 0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
+	libui_newbutton((t_but_constr){20, 140, "New Plane", "New Plane", 0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
 
-	libui_NewButton((t_but_constr){20, 500, "New PointL", "New PointL", 0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
-	//libui_NewButton((t_but_constr){20, 550, "New PointD", "New PointD", 0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
+	libui_newbutton((t_but_constr){20, 500, "New PointL", "New PointL", 0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
+	//libui_newbutton((t_but_constr){20, 550, "New PointD", "New PointD", 0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
 	
 
-	libui_NewButton((t_but_constr){20, 280, "Delete Object", "Delete Object", 0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
+	libui_newbutton((t_but_constr){20, 280, "Delete Object", "Delete Object", 0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
 	
-	libui_NewButton((t_but_constr){20, 340, "Save Scene", "Save Scene", 0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
+	libui_newbutton((t_but_constr){20, 340, "Save Scene", "Save Scene", 0x0000ff55}, rtv1->buttons, &(rtv1->c_buttons));
 
 
 
 	
-	libui_NewButton((t_but_constr){20, 400+250, "Selector", "Selector", 0x0000ff55}, rtv1->buttons, &rtv1->c_buttons);
-	libui_NewButton((t_but_constr){20, 400+300, "Edit", "Edit", 0x0000ff55}, rtv1->buttons, &rtv1->c_buttons);
-	libui_NewButton((t_but_constr){20, 400+380, "Ambient", "Ambient", 0x0000ff55}, rtv1->buttons, &rtv1->c_buttons);
-	libui_NewButton((t_but_constr){20, 400+430, "Soft Shadows", "Soft Shadows", 0x0000ff55}, rtv1->buttons, &rtv1->c_buttons);
-	libui_NewButton((t_but_constr){20, 400+480, "Export BMP", "Export BMP", 0x0000ff55}, rtv1->buttons, &rtv1->c_buttons);
+	libui_newbutton((t_but_constr){20, 400+250, "Selector", "Selector", 0x0000ff55}, rtv1->buttons, &rtv1->c_buttons);
+	libui_newbutton((t_but_constr){20, 400+300, "Edit", "Edit", 0x0000ff55}, rtv1->buttons, &rtv1->c_buttons);
+	libui_newbutton((t_but_constr){20, 400+380, "Ambient", "Ambient", 0x0000ff55}, rtv1->buttons, &rtv1->c_buttons);
+	libui_newbutton((t_but_constr){20, 400+430, "Soft Shadows", "Soft Shadows", 0x0000ff55}, rtv1->buttons, &rtv1->c_buttons);
+	libui_newbutton((t_but_constr){20, 400+480, "Export BMP", "Export BMP", 0x0000ff55}, rtv1->buttons, &rtv1->c_buttons);
 
 
 	//libui_drop_list(rtv1, 200, 20);
@@ -240,7 +240,7 @@ void		graphics_init(t_rtv1 *rtv1)
 	libui_NewList(tmp, rtv1->lists, &rtv1->c_lists);*/
 
 	libui_NewEdit((t_edit_constr){200, 240, "Name", "Name", 0x00550000}, rtv1->edits, &rtv1->c_edits);
-	libui_NewButton((t_but_constr){200, 300, "Save As", "Save As", 0x0000ff55}, rtv1->buttons, &rtv1->c_buttons);
+	libui_newbutton((t_but_constr){200, 300, "Save As", "Save As", 0x0000ff55}, rtv1->buttons, &rtv1->c_buttons);
 
 	kernel_init(rtv1);
 }
