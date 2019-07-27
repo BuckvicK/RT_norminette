@@ -28,5 +28,5 @@ void	libui_InputLetter(int key, t_libui_Edit *edits, int number, int shift)
 	}
 	else if (key == 8 && len > 0)
 		edits[number].text[len - 1] = 0;
-	libui_EditRefresh(edits, number);
+	libui_editrefresh(edits, number);
 }

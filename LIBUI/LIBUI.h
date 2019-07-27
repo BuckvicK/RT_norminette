@@ -95,11 +95,11 @@ void				libui_newlist(t_list_constr list,
 						t_libui_List *lists, int *c_lists);
 t_list_item_addr	libui_islistpressed(int x, int y,
 						t_libui_List *lists, int c_lists);
-void				libui_NewEdit(t_edit_constr edit,
+void				libui_newedit(t_edit_constr edit,
 						t_libui_Edit *edits, int *c_edits);
-int					libui_IsEditPressed(int x, int y,
+int					libui_iseditpressed(int x, int y,
 						t_libui_Edit *edits, int c_edits);
-void				libui_EditRefresh(t_libui_Edit *edits, int number);
+void				libui_editrefresh(t_libui_Edit *edits, int number);
 void				libui_disactiveall(t_libui_Edit *edits, int c_edits,
 						t_libui_List *lists, int c_lists);
 void				libui_InputLetter(int key, t_libui_Edit *edits,

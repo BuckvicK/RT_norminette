@@ -24,7 +24,7 @@ void			libui_create_edit_1(t_libui_Edit *edit, SDL_Surface *text)
 		edit->with_text_active, NULL);
 }
 
-t_libui_Edit	libui_CreateEdit(t_edit_constr input)
+t_libui_Edit	libui_createedit(t_edit_constr input)
 {
 	t_libui_Edit	edit;
 	SDL_Surface		*text;
@@ -49,17 +49,17 @@ t_libui_Edit	libui_CreateEdit(t_edit_constr input)
 	return(edit);
 }
 
-void			libui_NewEdit(t_edit_constr edit, t_libui_Edit *edits,
+void			libui_newedit(t_edit_constr edit, t_libui_Edit *edits,
 								int *c_edits)
 {
-	edits[*c_edits] = libui_CreateEdit(edit);
+	edits[*c_edits] = libui_createedit(edit);
 	(*c_edits)++;
 }
 
-int				libui_IsEditPressed(int x, int y, t_libui_Edit *edits,
+int				libui_iseditpressed(int x, int y, t_libui_Edit *edits,
 								int c_edits)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (i < c_edits)
@@ -75,7 +75,7 @@ int				libui_IsEditPressed(int x, int y, t_libui_Edit *edits,
 	return (-1);
 }
 
-void			libui_EditRefresh(t_libui_Edit *edits, int number)
+void			libui_editrefresh(t_libui_Edit *edits, int number)
 {
 	TTF_Font	*font;
 	SDL_Surface	*text;

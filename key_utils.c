@@ -48,7 +48,7 @@ int	mouse_pressed(int button, int x, int y, t_rtv1 *rtv1)
 				ret = list_utils(rtv1, x, y);
 				if (ret.item == -1)
 				{
-					rtv1->active_edit = libui_IsEditPressed(x - CH, y, rtv1->edits, rtv1->c_edits);
+					rtv1->active_edit = libui_iseditpressed(x - CH, y, rtv1->edits, rtv1->c_edits);
 
 					if (rtv1->active_edit == -1)
 					{
