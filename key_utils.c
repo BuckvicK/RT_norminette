@@ -394,7 +394,7 @@ int	key_pressed(int key, t_rtv1 *rtv1)
 	if (key == SDLK_ESCAPE)
 		exit(1);
 	else if (rtv1->active_edit != -1)
-		libui_InputLetter(key, rtv1->edits, rtv1->active_edit, rtv1->shift_pressed);
+		libui_inputletter(key, rtv1->edits, rtv1->active_edit, rtv1->shift_pressed);
 	else if (key == SDLK_RIGHT)
 	{
 		rtv1->scene.camera.center.x += 0.5 * cos(rtv1->scene.view_beta);
