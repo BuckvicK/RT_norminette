@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libui_DropList.c                                   :+:      :+:    :+:   */
+/*   libui_droplist.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chorange <chorange@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -56,7 +56,7 @@
 ** 	rtv1->list->ft_redraw(rtv1);
 ** }
 */
-t_list_item_addr	libui_IsListPressed(int x, int y,
+t_list_item_addr	libui_islistpressed(int x, int y,
 					t_libui_List *lists, int c_lists)
 {
 	int					i;
@@ -96,7 +96,7 @@ void				libui_help_func(t_but_constr tmp, t_libui_List *list,
 	}
 }
 
-t_libui_List		libui_CreateList(t_list_constr input)
+t_libui_List		libui_createlist(t_list_constr input)
 {
 	t_libui_List	list;
 	t_but_constr	tmp;
@@ -117,9 +117,9 @@ t_libui_List		libui_CreateList(t_list_constr input)
 	return (list);
 }
 
-void				libui_NewList(t_list_constr list,
+void				libui_newlist(t_list_constr list,
 					t_libui_List *lists, int *c_lists)
 {
-	lists[*c_lists] = libui_CreateList(list);
+	lists[*c_lists] = libui_createlist(list);
 	(*c_lists)++;
 }

@@ -91,16 +91,16 @@ int					libui_isbuttonpressed(int x, int y,
 void				libui_newbutton(t_but_constr button,
 						t_libui_button *buttons, int *c_buttons);
 t_libui_button		libui_createbutton(t_but_constr input);
-void				libui_NewList(t_list_constr list,
+void				libui_newlist(t_list_constr list,
 						t_libui_List *lists, int *c_lists);
-t_list_item_addr	libui_IsListPressed(int x, int y,
+t_list_item_addr	libui_islistpressed(int x, int y,
 						t_libui_List *lists, int c_lists);
 void				libui_NewEdit(t_edit_constr edit,
 						t_libui_Edit *edits, int *c_edits);
 int					libui_IsEditPressed(int x, int y,
 						t_libui_Edit *edits, int c_edits);
 void				libui_EditRefresh(t_libui_Edit *edits, int number);
-void				libui_DisactiveAll(t_libui_Edit *edits, int c_edits,
+void				libui_disactiveall(t_libui_Edit *edits, int c_edits,
 						t_libui_List *lists, int c_lists);
 void				libui_InputLetter(int key, t_libui_Edit *edits,
 						int number, int shift);

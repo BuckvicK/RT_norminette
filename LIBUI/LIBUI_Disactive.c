@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libui_Disactive.c                                  :+:      :+:    :+:   */
+/*   libui_disactiveall.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chorange <chorange@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,21 +12,21 @@
 
 #include "libui.h"
 
-void libui_DisactiveAll(t_libui_Edit *edits, int c_edits,
-                        t_libui_List *lists, int c_lists)
+void	libui_disactiveall(t_libui_Edit *edits, int c_edits,
+						t_libui_List *lists, int c_lists)
 {
-    int i;
+	int		i;
 
-    i = 0;
-    while (i < c_edits)
-    {
-        edits[i].is_active = 0;
-        i++;
-    }
-    i = 0;
-    while (i < c_lists)
-    {
-        lists[i].is_dropped = 0;
-        i++;
-    }
+	i = 0;
+	while (i < c_edits)
+	{
+		edits[i].is_active = 0;
+		i++;
+	}
+	i = 0;
+	while (i < c_lists)
+	{
+		lists[i].is_dropped = 0;
+		i++;
+	}
 }

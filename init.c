@@ -237,7 +237,7 @@ void		graphics_init(t_rtv1 *rtv1)
 	ft_strcpy(tmp.items_function[3], "Texture4");
 	ft_strcpy(tmp.items_function[4], "Texture5");
 
-	libui_NewList(tmp, rtv1->lists, &rtv1->c_lists);*/
+	libui_newlist(tmp, rtv1->lists, &rtv1->c_lists);*/
 
 	libui_NewEdit((t_edit_constr){200, 240, "Name", "Name", 0x00550000}, rtv1->edits, &rtv1->c_edits);
 	libui_newbutton((t_but_constr){200, 300, "Save As", "Save As", 0x0000ff55}, rtv1->buttons, &rtv1->c_buttons);

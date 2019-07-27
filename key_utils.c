@@ -16,7 +16,7 @@ t_list_item_addr list_utils(t_rtv1 *rtv1, int x, int y)
 {
 	t_list_item_addr ret;
 
-	ret = libui_IsListPressed(x - CH, y, rtv1->lists, rtv1->c_lists);
+	ret = libui_islistpressed(x - CH, y, rtv1->lists, rtv1->c_lists);
 	return(ret);
 }
 
@@ -52,7 +52,7 @@ int	mouse_pressed(int button, int x, int y, t_rtv1 *rtv1)
 
 					if (rtv1->active_edit == -1)
 					{
-						libui_DisactiveAll(rtv1->edits, rtv1->c_edits, rtv1->lists, rtv1->c_lists);
+						libui_disactiveall(rtv1->edits, rtv1->c_edits, rtv1->lists, rtv1->c_lists);
 						return (0);
 					}
 				}
