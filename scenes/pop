@@ -1,0 +1,64 @@
+A348F6B01733BDF2B9445BD7C42F2438
+camera_init
+{
+	position = (0.0, 1.500, -3.0)
+	direction = (0.0, 0.0, 1.0)
+}
+
+new object
+{
+	type = cone
+	position = (0.0, 0.0, 7.0)
+	pos2 = (0.0, 0.0, 0.0)
+	pos3 = (0.0, 0.0, 0.0)
+	direction = (0.0, 1.0, 0.0)
+	rotate = (0.0, 0.0, 0.0)
+	radius = 1.0
+	color = 8758121
+	specular = 20.0
+	reflective = 0.0
+	refractive = 1.0
+	transparency = 0.0
+	smoothness = 0.0
+	angle = 0.200
+	texture-id = -1
+}
+
+new light
+{
+	type = point
+	intensity = 0.700
+	position = (2.0, 1.0, 2.399)
+	direction = (-0.577, -0.577, -0.577)
+}
+new light
+{
+	type = ambient
+	intensity = 0.300
+	position = (0.0, 0.0, 0.0)
+	direction = (-0.577, -0.577, -0.577)
+}
+new light
+{
+	type = point
+	intensity = 0.200
+	position = (0.0, 1.0, 0.0)
+	direction = (-2147483648.-2147483648, -2147483648.-2147483648, -2147483648.-2147483648)
+}
+new light
+{
+	type = point
+	intensity = 0.200
+	position = (0.0, 1.0, 0.0)
+	direction = (-2147483648.-2147483648, -2147483648.-2147483648, -2147483648.-2147483648)
+}
+new light
+{
+	type = point
+	intensity = 0.200
+	position = (0.0, 1.0, 0.0)
+	direction = (-2147483648.-2147483648, -2147483648.-2147483648, -2147483648.-2147483648)
+}
+
+
+end
