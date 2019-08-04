@@ -264,6 +264,8 @@ void	selector_mouse_release(int button, int x, int y, t_rtv1 *rtv1);
 
 void			provider(t_rtv1 *rtv1);
 double			ray_intersect_obj(t_vector start, t_vector dir, t_obj *obj);
+double			ray_intersect_paraboloid(t_vector start, t_vector dir, t_obj *parab);
+double			ray_intersect_triangle(t_vector start, t_vector dir, t_obj *triangle);
 
 void			err_exit(void);
 int				clean_exit(t_rtv1 *rtv1);
@@ -277,11 +279,11 @@ void			set_arrows_pos(t_rtv1 *rtv1, int mode);
 
 
 
-double ray_intersect_arrow(t_vector start, t_vector dir, t_obj *cyl);
+double			ray_intersect_arrow(t_vector start, t_vector dir, t_obj *cyl);
 
 
-void save(t_rtv1 *rtv1, char *filename);
-void save_as(t_rtv1 *rtv1);
+void			save(t_rtv1 *rtv1, char *filename);
+void			save_as(t_rtv1 *rtv1);
 
 
 void new_triangle(t_rtv1 *rtv1);

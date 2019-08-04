@@ -12,14 +12,12 @@
 
 #include "rtv1.h"
 
-double ray_intersect_paraboloid(t_vector start, t_vector dir, t_obj *parab);
-double ray_intersect_triangle(t_vector start, t_vector dir, t_obj *triangle);
-
-static double	ray_intersect_plane(t_vector start, t_vector dir, t_obj *plane)
+static double	ray_intersect_plane(t_vector start, t_vector dir,
+									t_obj *plane)
 {
-	double dir_dot_c;
-	double cen_dot_c;
-	double t;
+	double	dir_dot_c;
+	double	cen_dot_c;
+	double	t;
 
 	start = vector_subt(start, plane->center);
 	dir_dot_c = scal_mult(dir, plane->dir);
@@ -31,9 +29,10 @@ static double	ray_intersect_plane(t_vector start, t_vector dir, t_obj *plane)
 	return (t >= ZERO ? t : 0);
 }
 
-static double	ray_intersect_cylinder(t_vector start, t_vector dir, t_obj *cyl)
+static double	ray_intersect_cylinder(t_vector start, t_vector dir,
+										t_obj *cyl)
 {
-	t_s s;
+	t_s	s;
 
 	start = vector_subt(start, cyl->center);
 	s.a = scal_mult(dir, dir) - scal_mult(dir, cyl->dir) *
@@ -56,7 +55,7 @@ static double	ray_intersect_cylinder(t_vector start, t_vector dir, t_obj *cyl)
 
 static double	ray_intersect_cone(t_vector start, t_vector dir, t_obj *cone)
 {
-	t_s s;
+	t_s	s;
 
 	start = vector_subt(start, cone->center);
 	s.k = tan(cone->angle);
@@ -81,7 +80,7 @@ static double	ray_intersect_cone(t_vector start, t_vector dir, t_obj *cone)
 
 static double	ray_intersect_sphere(t_vector start, t_vector dir, t_obj *obj)
 {
-	t_s s;
+	t_s	s;
 
 	start = vector_subt(start, obj->center);
 	s.a = scal_mult(dir, dir);
@@ -101,7 +100,6 @@ static double	ray_intersect_sphere(t_vector start, t_vector dir, t_obj *obj)
 
 double			ray_intersect_obj(t_vector start, t_vector dir, t_obj *obj)
 {
-
 	if (obj->type == sphere)
 		return (ray_intersect_sphere(start, dir, obj));
 	else if (obj->type == cone)
