@@ -296,5 +296,21 @@ t_vector				rot(t_vector P, t_vector angles);
 
 int						get_index_by_id(t_scene *scene, int id);
 int						get_light_index_by_id(t_scene *scene, int id);
+t_list_item_addr		list_utils(t_rtv1 *rtv1, int x, int y);
+
+void					provider_1(t_rtv1 *rtv1);
+void					provider_2(t_rtv1 *rtv1);
+void					provider_3(t_rtv1 *rtv1);
+void					provider_4(t_rtv1 *rtv1);
+void					provider_5(t_rtv1 *rtv1);
+void					provider_6(t_rtv1 *rtv1);
+void					provider_7(t_rtv1 *rtv1);
+void					provider_8_windowevent(t_rtv1 *rtv1, SDL_Event ev);
+void					provider_9_mousebuttondown(t_rtv1 *rtv1,
+							SDL_Event ev);
+void					provider_10_mousebuttonup(t_rtv1 *rtv1,
+							SDL_Event ev);
+void					provider_11_mousemotion(t_rtv1 *rtv1, SDL_Event ev);
+void					provider_12_mousewheel(t_rtv1 *rtv1, SDL_Event ev);
 
 #endif

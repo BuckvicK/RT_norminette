@@ -32,7 +32,7 @@ static double	ray_intersect_plane(t_vector start, t_vector dir,
 static double	ray_intersect_cylinder(t_vector start, t_vector dir,
 										t_obj *cyl)
 {
-	t_s	s;
+	t_s		s;
 
 	start = vector_subt(start, cyl->center);
 	s.a = scal_mult(dir, dir) - scal_mult(dir, cyl->dir) *
@@ -55,7 +55,7 @@ static double	ray_intersect_cylinder(t_vector start, t_vector dir,
 
 static double	ray_intersect_cone(t_vector start, t_vector dir, t_obj *cone)
 {
-	t_s	s;
+	t_s		s;
 
 	start = vector_subt(start, cone->center);
 	s.k = tan(cone->angle);
@@ -80,7 +80,7 @@ static double	ray_intersect_cone(t_vector start, t_vector dir, t_obj *cone)
 
 static double	ray_intersect_sphere(t_vector start, t_vector dir, t_obj *obj)
 {
-	t_s	s;
+	t_s		s;
 
 	start = vector_subt(start, obj->center);
 	s.a = scal_mult(dir, dir);
