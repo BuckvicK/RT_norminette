@@ -1,4 +1,4 @@
-AF9B9B63A51096F0B0F1B6FFA9386E36
+EF7EBC8C2E941E17515C61D0A710E062
 camera_init
 {
 	position = (0.0, 1.0, -79.0)
@@ -7,21 +7,20 @@ camera_init
 
 new object
 {
-	type = sphere
-	position = (10.0, 3.882, -20.0)
+	type = plane
+	position = (0.0, 0.0, 20.0)
 	pos2 = (0.0, 0.0, 0.0)
 	pos3 = (0.0, 0.0, 0.0)
-	direction = (-0.577, -0.577, -0.577)
-	rotate = (2.790, 4.301, 0.0)
-	radius = 6.698
-	color = 9129932
+	direction = (0.0, 0.0, -1.0)
+	rotate = (0.0, 0.0, 0.0)
+	radius = 0.0
+	color = 7651063
 	specular = 20.0
 	reflective = 0.0
 	refractive = 1.0
 	transparency = 0.0
-	smoothness = 0.0
 	angle = 0.0
-	texture-id = 4
+	texture-id = -1
 }
 
 new object
@@ -38,7 +37,6 @@ new object
 	reflective = 0.0
 	refractive = 1.0
 	transparency = 0.0
-	smoothness = 0.0
 	angle = 0.0
 	texture-id = -1
 }
@@ -57,7 +55,6 @@ new object
 	reflective = 0.0
 	refractive = 1.0
 	transparency = 0.0
-	smoothness = 0.0
 	angle = 0.0
 	texture-id = -1
 }
@@ -76,7 +73,6 @@ new object
 	reflective = 0.0
 	refractive = 1.0
 	transparency = 0.0
-	smoothness = 0.0
 	angle = 0.0
 	texture-id = -1
 }
@@ -95,7 +91,6 @@ new object
 	reflective = 0.0
 	refractive = 1.0
 	transparency = 0.0
-	smoothness = 0.0
 	angle = 0.0
 	texture-id = -1
 }
@@ -114,9 +109,26 @@ new object
 	reflective = 0.0
 	refractive = 1.0
 	transparency = 0.0
-	smoothness = 0.0
 	angle = 0.0
 	texture-id = -1
+}
+
+new object
+{
+	type = sphere
+	position = (10.0, 3.882, -20.0)
+	pos2 = (0.0, 0.0, 0.0)
+	pos3 = (0.0, 0.0, 0.0)
+	direction = (-0.577, -0.577, -0.577)
+	rotate = (2.790, 4.301, 0.0)
+	radius = 6.698
+	color = 9129932
+	specular = 20.0
+	reflective = 0.0
+	refractive = 1.0
+	transparency = 0.0
+	angle = 0.0
+	texture-id = 4
 }
 
 new light

@@ -97,29 +97,20 @@ int			mouse_pressed(int button, int x, int y, t_rtv1 *rtv1)
 					rtv1->scene.c_lights--;
 					rtv1->scene.arrows_on = 0;
 					refresh_selector_buttons(rtv1);
-					return(0);
+					return (0);
 				}
-
-
 				if (!rtv1->scene.c_objs)
 					return (0);
-				
-
-				selected_id = (rtv1->selected - &rtv1->scene.objs[0])/*sizeof(t_obj)*/;
-
+				selected_id = (rtv1->selected - &rtv1->scene.objs[0]);
 				rtv1->scene.objs[selected_id] = rtv1->scene.objs[rtv1->scene.c_objs - 1];
 				rtv1->scene.c_objs--;
 				rtv1->scene.arrows_on = 0;
 				refresh_selector_buttons(rtv1);
 			}
-
 			else if (!ft_strcmp(func, "Save Scene"))
 			{	
 				save(rtv1, rtv1->scene_file_name);
 			}
-
-
-
 			else if (!ft_strcmp(func, "Save As"))
 			{
 				save_as(rtv1);
