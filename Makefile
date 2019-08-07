@@ -20,7 +20,8 @@ OBJECTS = main.o init.o vect_math1.o vect_math2.o color.o read_scene1.o atof.o\
 	md5.o itoa_16.o read_obj.o edit.o edit_event_utils.o scene_selector.o \
 	selector_event_utils.o new_light.o edit_event_utils_1.o edit_1.o \
 	intersect_paraboloid.o init_1.o init_2.o intersect_triangle.o \
-	key_utils_1.o main_1.o main_2.o main_3.o main_4.o main_5.o
+	key_utils_1.o main_1.o main_2.o main_3.o main_4.o main_5.o \
+	read_scene3.o
 
 LIBS = -L./libft -lft -L./libui/ -lui -lm -framework OpenGL\
 	-framework AppKit -framework OpenCL -framework OpenGL
