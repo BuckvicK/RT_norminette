@@ -41,7 +41,7 @@ void		provider(t_rtv1 *rtv1)
 	provider_5(rtv1);
 	provider_6(rtv1);
 	provider_7(rtv1);
-	while(SDL_PollEvent(&ev))
+	while (SDL_PollEvent(&ev))
 		provider_condition_switch(rtv1, ev);
 	SDL_Delay(10);
 }

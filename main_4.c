@@ -62,7 +62,7 @@ void		provider_6(t_rtv1 *rtv1)
 			provider_6_1(rtv1, i);
 			i++;
 		}
-		rtv1->selector_texture = SDL_CreateTextureFromSurface(
+		rtv1->selector_texture = SDL_CreateTextureFromSurface(\
 			rtv1->selector_renderer, rtv1->selector_surface);
 		SDL_RenderClear(rtv1->selector_renderer);
 		SDL_RenderCopy(rtv1->selector_renderer,

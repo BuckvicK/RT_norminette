@@ -24,10 +24,10 @@ void		provider_8_windowevent(t_rtv1 *rtv1, SDL_Event ev)
 		SDL_Quit();
 		exit(1);
 	}
-	else if (ev.window.event == 14 && 
+	else if (ev.window.event == 14 && \
 				ev.window.windowID == rtv1->edit_window_active)
 		destroy_edit(rtv1);
-	else if (ev.window.event == 14 &&
+	else if (ev.window.event == 14 && \
 				ev.window.windowID == rtv1->selector_window_active)
 		destroy_scene_selector(rtv1);
 }
