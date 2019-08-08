@@ -19,8 +19,10 @@ int		mouse_pressed_1()
 
 int			mouse_pressed(int button, int x, int y, t_rtv1 *rtv1)
 {
-	int		pressed_button;
-	char	func[64];
+	int					pressed_button;
+	char				func[64];
+	t_list_item_addr	ret;
+	int					selected_id;
 
 	rtv1->prev_x = x;
 	rtv1->prev_y = y;
@@ -35,7 +37,6 @@ int			mouse_pressed(int button, int x, int y, t_rtv1 *rtv1)
 			pressed_button = libui_isbuttonpressed(x - CH, y, rtv1->buttons, rtv1->c_buttons);
 			if (pressed_button == -1)
 			{
-				t_list_item_addr ret;
 				ret = list_utils(rtv1, x, y);
 				if (ret.item == -1)
 				{
@@ -89,7 +90,6 @@ int			mouse_pressed(int button, int x, int y, t_rtv1 *rtv1)
 			}
 			else if (!ft_strcmp(func, "Delete Object"))
 			{
-				int selected_id;
 				if (rtv1->selected_light && rtv1->scene.c_lights)
 				{
 					selected_id = get_light_index_by_id(&rtv1->scene, rtv1->selected_light->id);

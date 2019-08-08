@@ -51,7 +51,8 @@ t_light		*read_light_parameters(char *line, t_light **light)
 	else if (ft_strstr(line, "position"))
 		(*light)->center = read_vector(ft_strchr(line, '=') + 1);
 	else if (ft_strstr(line, "direction"))
-		(*light)->dir = vector_normalize(read_vector(ft_strchr(line, '=') + 1));
+		(*light)->dir = vector_normalize(read_vector(\
+			ft_strchr(line, '=') + 1));
 	else if (ft_strstr(line, "intensity"))
 		(*light)->intensity = ft_atof(ft_strchr(line, '=') + 1);
 	return (*light);
