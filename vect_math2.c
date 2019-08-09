@@ -88,17 +88,17 @@ t_vector	rot(t_vector P, t_vector angles)
 	double		arr[8];
 
 	rot_help(angles, arr);
-    mat[0] =   arr[2] * arr[4];
-    mat[1] =  -arr[2] * arr[5];
-    mat[2] =  -arr[3];
+    mat[0] = arr[2] * arr[4];
+    mat[1] = -arr[2] * arr[5];
+    mat[2] = -arr[3];
     mat[4] = -arr[7] * arr[4] + arr[0] * arr[5];
-    mat[5] =  arr[7] * arr[5] + arr[0] * arr[4];
-    mat[6] =  -arr[1] * arr[2];
-    mat[8] =  arr[6] * arr[4] + arr[1] * arr[5];
+    mat[5] = arr[7] * arr[5] + arr[0] * arr[4];
+    mat[6] = -arr[1] * arr[2];
+    mat[8] = arr[6] * arr[4] + arr[1] * arr[5];
     mat[9] = -arr[6] * arr[5] + arr[1] * arr[4];
-    mat[10]=   arr[0] * arr[2];
-    mat[3] =  mat[7] = mat[11] = mat[12] = mat[13] = mat[14] = 0.0;
-    mat[15]=  1.0;
+    mat[10] = arr[0] * arr[2];
+    mat[3] = mat[7] = mat[11] = mat[12] = mat[13] = mat[14] = 0.0;
+    mat[15] = 1.0;
 	ret.x = P.x * mat[0] + P.y * mat[1] + P.z * mat[2];
 	ret.y = P.x * mat[4] + P.y * mat[5] + P.z * mat[6];
 	ret.z = P.x * mat[8] + P.y * mat[9] + P.z * mat[10];
