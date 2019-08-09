@@ -14,7 +14,7 @@
 
 t_vector		rotate_view(t_vector point, double alpha, double beta)
 {
-	t_vector tempo;
+	t_vector	tempo;
 
 	tempo = point;
 	point.y = tempo.y * cos(alpha) + tempo.z * sin(alpha);
@@ -38,7 +38,7 @@ static t_vector	get_pixel_pisition(int x, int y)
 }
 
 static t_obj	*get_closest_object(double *closest_t, t_vector start,
-t_vector dir, t_scene *scene)
+									t_vector dir, t_scene *scene)
 {
 	double	t;
 	int		i;
@@ -47,7 +47,6 @@ t_vector dir, t_scene *scene)
 	t = 0.0;
 	i = 0;
 	closest_obj = NULL;
-	
 	while (i < scene->c_objs)
 	{
 		t = ray_intersect_obj(start, dir, &(scene->objs[i]));
@@ -65,26 +64,35 @@ void			set_arrows_pos(t_rtv1 *rtv1, int mode)
 {
 	if (!mode)
 	{
-		rtv1->scene.arrows[0].center = vector_sum(rtv1->selected->center, (t_vector){0.5, 0.0, 0.0});
-		rtv1->scene.arrows[1].center = vector_sum(rtv1->selected->center, (t_vector){0.0, 0.5, 0.0});
-		rtv1->scene.arrows[2].center = vector_sum(rtv1->selected->center, (t_vector){0.0, 0.0, 0.5});
+		rtv1->scene.arrows[0].center = vector_sum(rtv1->selected->center,
+			(t_vector){0.5, 0.0, 0.0});
+		rtv1->scene.arrows[1].center = vector_sum(rtv1->selected->center,
+			(t_vector){0.0, 0.5, 0.0});
+		rtv1->scene.arrows[2].center = vector_sum(rtv1->selected->center,
+			(t_vector){0.0, 0.0, 0.5});
 	}
 	else
 	{
-		rtv1->scene.arrows[0].center = vector_sum(rtv1->selected_light->center, (t_vector){0.5, 0.0, 0.0});
-		rtv1->scene.arrows[1].center = vector_sum(rtv1->selected_light->center, (t_vector){0.0, 0.5, 0.0});
-		rtv1->scene.arrows[2].center = vector_sum(rtv1->selected_light->center, (t_vector){0.0, 0.0, 0.5});
+		rtv1->scene.arrows[0].center = vector_sum(\
+			rtv1->selected_light->center, (t_vector){0.5, 0.0, 0.0});
+		rtv1->scene.arrows[1].center = vector_sum(\
+			rtv1->selected_light->center, (t_vector){0.0, 0.5, 0.0});
+		rtv1->scene.arrows[2].center = vector_sum(\
+			rtv1->selected_light->center, (t_vector){0.0, 0.0, 0.5});
 	}
-	
 }
 
-int get_intersect_arrow(t_rtv1 *rtv1, t_vector start,  t_vector dir)
+int				get_intersect_arrow(t_rtv1 *rtv1, t_vector start,	
+									t_vector dir)
 {
-	int i = 0;
-	int ret = -1;
-	double t = 999999.0;
-	double tmp;
+	int		i;
+	int		ret;
+	double	t;
+	double	tmp;
 
+	i = 0;
+	ret = -1;
+	t = 999999.0;
 	while (i < 3)
 	{
 		tmp = ray_intersect_arrow(start, dir, &rtv1->scene.arrows[i]);
@@ -95,35 +103,11 @@ int get_intersect_arrow(t_rtv1 *rtv1, t_vector start,  t_vector dir)
 		}
 		i++;
 	}
-
 	return (ret);
 }
 
-void			select_object(t_rtv1 *rtv1, int x, int y, t_obj **out)
+void			select_object_1(t_rtv1 *rtv1, t_obj *ptr, t_obj **out)
 {
-	t_vector		pixel_pos_3d;
-	static t_obj	*ptr;
-	int arrow;
-
-	ptr = NULL;
-	//rtv1->left_mouse_pressed = 1;
-	pixel_pos_3d = get_pixel_pisition(x - CW / 2, -y + CH / 2);
-	pixel_pos_3d = rotate_view(pixel_pos_3d, rtv1->scene.view_alpha,
-			rtv1->scene.view_beta);
-		
-	if (rtv1->scene.arrows_on)
-	{
-		arrow = get_intersect_arrow(rtv1, rtv1->scene.camera.center, pixel_pos_3d);
-		if (arrow != -1)
-		{
-			rtv1->arrow = arrow;
-			return;
-		}
-	}
-	rtv1->selected_light = NULL;
-	rtv1->selected_t = 9999999.9;
-	ptr = get_closest_object(&(rtv1->selected_t), rtv1->scene.camera.center,
-			pixel_pos_3d, &(rtv1->scene));
 	if (ptr)
 	{
 		*out = ptr;
@@ -134,13 +118,37 @@ void			select_object(t_rtv1 *rtv1, int x, int y, t_obj **out)
 		rtv1->left_mouse_pressed = 0;
 }
 
-
-void move_polygonal(double x, double y, double z, t_rtv1 *rtv1)
+void			select_object(t_rtv1 *rtv1, int x, int y, t_obj **out)
 {
-	int i;
+	t_vector		pixel_pos_3d;
+	static t_obj	*ptr;
+	int				arrow;
+
+	ptr = NULL;
+	pixel_pos_3d = get_pixel_pisition(x - CW / 2, -y + CH / 2);
+	pixel_pos_3d = rotate_view(pixel_pos_3d, rtv1->scene.view_alpha,
+			rtv1->scene.view_beta);
+	if (rtv1->scene.arrows_on)
+	{
+		arrow = get_intersect_arrow(rtv1, rtv1->scene.camera.center,
+			pixel_pos_3d);
+		if (arrow != -1)
+		{
+			rtv1->arrow = arrow;
+			return;
+		}
+	}
+	rtv1->selected_light = NULL;
+	rtv1->selected_t = 9999999.9;
+	ptr = get_closest_object(&(rtv1->selected_t), rtv1->scene.camera.center,
+			pixel_pos_3d, &(rtv1->scene));
+}
+
+void			move_polygonal(double x, double y, double z, t_rtv1 *rtv1)
+{
+	int		i;
 
 	i = 0;
-
 	while (i < rtv1->scene.c_objs)
 	{
 		if (rtv1->scene.objs[i].id == rtv1->selected->id)
@@ -148,11 +156,9 @@ void move_polygonal(double x, double y, double z, t_rtv1 *rtv1)
 			rtv1->scene.objs[i].center.x += x;
 			rtv1->scene.objs[i].center.y += y;
 			rtv1->scene.objs[i].center.z += z;
-
 			rtv1->scene.objs[i].p2.x += x;
 			rtv1->scene.objs[i].p2.y += y;
 			rtv1->scene.objs[i].p2.z += z;
-
 			rtv1->scene.objs[i].p3.x += x;
 			rtv1->scene.objs[i].p3.y += y;
 			rtv1->scene.objs[i].p3.z += z;
@@ -161,52 +167,52 @@ void move_polygonal(double x, double y, double z, t_rtv1 *rtv1)
 	}
 }
 
-void rot_polygonal(double x, double y, double z, t_rtv1 *rtv1)
+void			rot_polygonal(double x, double y, double z, t_rtv1 *rtv1)
 {
-	int i;
+	int		i;
 
 	i = 0;
-
 	while (i < rtv1->scene.c_objs)
 	{
 		if (rtv1->scene.objs[i].id == rtv1->selected->id)
 		{
-			rtv1->scene.objs[i].center = /*vector_sum(*/rot(/*vector_subt(rtv1->selected->center, */rtv1->scene.objs[i].center/*)*/, (t_vector){x, y, z})/*, rtv1->selected->center)*/;
-
-			rtv1->scene.objs[i].p2 = /*vector_sum(*/rot(/*vector_subt(rtv1->selected->center, */rtv1->scene.objs[i].p2/*)*/, (t_vector){x, y, z})/*, rtv1->selected->center)*/;
-
-			rtv1->scene.objs[i].p3 = /*vector_sum(*/rot(/*vector_subt(rtv1->selected->center, */rtv1->scene.objs[i].p3/*)*/, (t_vector){x, y, z})/*, rtv1->selected->center)*/;
+			rtv1->scene.objs[i].center = rot(rtv1->scene.objs[i].center,
+				(t_vector){x, y, z});
+			rtv1->scene.objs[i].p2 = rot(rtv1->scene.objs[i].p2,
+				(t_vector){x, y, z});
+			rtv1->scene.objs[i].p3 = rot(rtv1->scene.objs[i].p3,
+				(t_vector){x, y, z});
 		}
 		i++;
 	}
 }
 
-int get_index_by_id(t_scene *scene, int id)
+int				get_index_by_id(t_scene *scene, int id)
 {
-	int ret;
-	int i = 0;
+	int		ret;
+	int		i;
 
+	i = 0;
 	while (i < scene->c_objs)
 	{
 		if (scene->objs[i].id == id)
-			return(i);
+			return (i);
 		i++;
 	}
-
 	return (-1);
 }
 
-int get_light_index_by_id(t_scene *scene, int id)
+int				get_light_index_by_id(t_scene *scene, int id)
 {
-	int ret;
-	int i = 0;
+	int		ret;
+	int		i;
 
+	i = 0;
 	while (i < scene->c_lights)
 	{
 		if (scene->lights[i].id == id)
-			return(i);
+			return (i);
 		i++;
 	}
-
 	return (-1);
 }
