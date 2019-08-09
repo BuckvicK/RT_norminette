@@ -80,33 +80,28 @@
 ** 		return (intersection);
 ** 	return (0.0);
 ** }
+**
+** double		zeroThreshold;
+** t_vector	tmp = start;
+** start = vector_subt(start, cyl->center);
+** double dot_start_cyl_dir = scal_mult(start, cyl->dir);
+** double dot_dir_cyl_dir = scal_mult(dir, cyl->dir);
+** double a = scal_mult(dir, dir) - dot_dir_cyl_dir * dot_dir_cyl_dir;
+** double b = 2 * (scal_mult(dir, start) - dot_dir_cyl_dir * dot_start_cyl_dir);
+** double c = scal_mult(start, start) - dot_start_cyl_dir * dot_start_cyl_dir - 0.05 * 0.05;
+** double D = b * b - 4 * a * c;
+** 
+** double		dot_start_cyl_dir;	arr[0]
+** double		dot_dir_cyl_dir;	arr[1]
+** double		a;					arr[2]
+** double		b;					arr[3]
+** double		c;					arr[4]
+** double		D;					arr[5]
+** double		arr[6];				arr[6]
+** double		t1;					arr[7]
+** double		t2;					arr[8]
+** double		t;					arr[9]
 */
-/*
-	double		zeroThreshold;
-	t_vector	tmp = start;
-	start = vector_subt(start, cyl->center);
-
-	double dot_start_cyl_dir = scal_mult(start, cyl->dir);
-	double dot_dir_cyl_dir = scal_mult(dir, cyl->dir);
-
-	double a = scal_mult(dir, dir) - dot_dir_cyl_dir * dot_dir_cyl_dir;
-	double b = 2 * (scal_mult(dir, start) - dot_dir_cyl_dir * dot_start_cyl_dir);
-	double c = scal_mult(start, start) - dot_start_cyl_dir * dot_start_cyl_dir - 0.05 * 0.05;
-	double D = b * b - 4 * a * c;
-
-	double		dot_start_cyl_dir;	arr[0]
-	double		dot_dir_cyl_dir;	arr[1]
-	double		a;					arr[2]
-	double		b;					arr[3]
-	double		c;					arr[4]
-	double		D;					arr[5]
-
-	double		arr[6];					arr[6]
-	double		t1;					arr[7]
-	double		t2;					arr[8]
-	double		t;					arr[9]
-*/
-
 void		ray_intersect_arrow_1(t_vector start, t_vector dir, t_obj *cyl,
 									double *arr)
 {

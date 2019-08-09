@@ -12,40 +12,52 @@
 
 #include "rtv1.h"
 
-double		ray_intersect_paraboloid(t_vector start, t_vector dir, t_obj *parab)
+void		ray_intersect_paraboloid_2(t_vector start, t_vector dir, t_obj *parab)
+{
+	double	arr[3];
+
+	// q.a = 2.f * (scal_mult(dir, dir) - arr[0] * arr[0]);
+	// q.b = 2.f * (scal_mult(dir, x) - arr[0] * (arr[1] + 2.f *  parab->radius));
+	// q.c = scal_mult(x, x) - arr[1] * (arr[1] + 4.f *  parab->radius);
+}
+
+/*
+** double		u;				arr[0]
+** double		z;				arr[1]
+** double		len;			arr[2]
+** double		zero_threshold;	arr[3]
+*/
+double		ray_intersect_paraboloid(t_vector start, t_vector dir,
+				t_obj *parab)
 {
 	t_s			q;
 	t_vector	x;
 	t_vector	hitpoint;
-	double		u;
-	double		z;
-	double		len;
-	double		zeroThreshold;
+	double		arr[4];
 
-	zeroThreshold = 0.0001;
+	arr[3] = 0.0001;
 	x = vector_subt(start, parab->center);
-	u = scal_mult(dir, parab->dir);
-	z = scal_mult(x, parab->dir);
-	q.a = 2.f * (scal_mult(dir, dir) - u * u);
-	q.b = 2.f * (scal_mult(dir, x) - u * (z + 2.f *  parab->radius));
-	q.c = scal_mult(x, x) - z * (z + 4.f *  parab->radius);
+	arr[0] = scal_mult(dir, parab->dir);
+	arr[1] = scal_mult(x, parab->dir);
+	q.a = 2.f * (scal_mult(dir, dir) - arr[0] * arr[0]);
+	q.b = 2.f * (scal_mult(dir, x) - arr[0] * (arr[1] + 2.f *  parab->radius));
+	q.c = scal_mult(x, x) - arr[1] * (arr[1] + 4.f *  parab->radius);
 	if ((q.diskr = q.b * q.b - 2.f * q.a * q.c) >= 0.f)
 	{
-		q.sq_diskr = sqrt(q.diskr);
-		q.t = (-q.b - q.sq_diskr) / q.a;
+		q = (t_s){.sq_diskr = sqrt(q.diskr), .t = (-q.b - q.sq_diskr) / q.a};
 		if (q.t > 0.f)
 		{
 			hitpoint = vector_sum(vector_int_mult(dir, q.t), x);
-			len = scal_mult(hitpoint, parab->dir);
-			if (len < parab->angle && len > -zeroThreshold)
+			arr[2] = scal_mult(hitpoint, parab->dir);
+			if (arr[2] < parab->angle && arr[2] > -arr[3])
 				return (q.t);
 		}
 		q.t = (-q.b + q.sq_diskr) / q.a;
-		if (q.t > -zeroThreshold)
+		if (q.t > -arr[3])
 		{
 			hitpoint = vector_sum(vector_int_mult(dir, q.t), x);
-			len = scal_mult(hitpoint, parab->dir);
-			if (len < parab->angle && len > -zeroThreshold)
+			arr[2] = scal_mult(hitpoint, parab->dir);
+			if (arr[2] < parab->angle && arr[2] > -arr[3])
 				return (q.t);
 		}
 	}
