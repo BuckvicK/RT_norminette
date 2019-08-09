@@ -14,7 +14,7 @@
 
 double		vector_length(t_vector a)
 {
-	double result;
+	double	result;
 
 	result = sqrt(a.x * a.x + a.y * a.y + a.z * a.z);
 	return (result);
@@ -22,7 +22,7 @@ double		vector_length(t_vector a)
 
 t_vector	vector_init(double x, double y, double z)
 {
-	t_vector ret;
+	t_vector	ret;
 
 	ret.x = x;
 	ret.y = y;
@@ -42,7 +42,7 @@ t_vector	vector_project(t_vector a, t_vector b)
 
 t_vector	vector_normalize(t_vector a)
 {
-	t_vector c;
+	t_vector	c;
 
 	c = vector_int_div(a, sqrt(scal_mult(a, a)));
 	return (c);
@@ -58,41 +58,49 @@ t_vector	vector_cross(t_vector a, t_vector b)
 	return (r);
 }
 
-t_vector rot(t_vector P, t_vector angles)
+/*
+** double A = cos(angles.x);	arr[0];
+** double B = sin(angles.x);	arr[1];
+** double C = cos(angles.y);	arr[2];
+** double D = sin(angles.y);	arr[3];
+** double E = cos(angles.z);	arr[4];
+** double F = sin(angles.z);	arr[5];
+**
+** double AD = A * D;			arr[6];
+** double BD = B * D;			arr[7];
+*/
+void		rot_help(t_vector angles, double *arr)
 {
-	double A = cos(angles.x);
-    double B = sin(angles.x);
-    double C = cos(angles.y);
-    double D = sin(angles.y);
-    double E = cos(angles.z);
-    double F = sin(angles.z);
+	arr[0] = cos(angles.x);
+	arr[1] = sin(angles.x);
+	arr[2] = cos(angles.y);
+	arr[3] = sin(angles.y);
+	arr[4] = cos(angles.z);
+	arr[5] = sin(angles.z);
+	arr[6] = arr[0] * arr[3];
+	arr[7] = arr[1] * arr[3];
+}
 
-    double AD = A * D;
-    double BD = B * D;
+t_vector	rot(t_vector P, t_vector angles)
+{
+	t_vector	ret;
+	double		mat[16];
+	double		arr[8];
 
-	double mat[16];
-
-    mat[0] =   C * E;
-    mat[1] =  -C * F;
-    mat[2] =  -D;
-    mat[4] = -BD * E + A * F;
-    mat[5] =  BD * F + A * E;
-    mat[6] =  -B * C;
-    mat[8] =  AD * E + B * F;
-    mat[9] = -AD * F + B * E;
-    mat[10]=   A * C;
-
+	rot_help(angles, arr);
+    mat[0] =   arr[2] * arr[4];
+    mat[1] =  -arr[2] * arr[5];
+    mat[2] =  -arr[3];
+    mat[4] = -arr[7] * arr[4] + arr[0] * arr[5];
+    mat[5] =  arr[7] * arr[5] + arr[0] * arr[4];
+    mat[6] =  -arr[1] * arr[2];
+    mat[8] =  arr[6] * arr[4] + arr[1] * arr[5];
+    mat[9] = -arr[6] * arr[5] + arr[1] * arr[4];
+    mat[10]=   arr[0] * arr[2];
     mat[3] =  mat[7] = mat[11] = mat[12] = mat[13] = mat[14] = 0.0;
     mat[15]=  1.0;
-
-	t_vector ret;
-
 	ret.x = P.x * mat[0] + P.y * mat[1] + P.z * mat[2];
 	ret.y = P.x * mat[4] + P.y * mat[5] + P.z * mat[6];
 	ret.z = P.x * mat[8] + P.y * mat[9] + P.z * mat[10];
-
-
-
-
 	return (ret);
 }

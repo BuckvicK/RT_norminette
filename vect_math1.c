@@ -14,7 +14,7 @@
 
 t_vector	vector_subt(t_vector a, t_vector b)
 {
-	t_vector c;
+	t_vector	c;
 
 	c.x = a.x - b.x;
 	c.y = a.y - b.y;
@@ -24,7 +24,7 @@ t_vector	vector_subt(t_vector a, t_vector b)
 
 t_vector	vector_sum(t_vector a, t_vector b)
 {
-	t_vector c;
+	t_vector	c;
 
 	c.x = a.x + b.x;
 	c.y = a.y + b.y;
@@ -34,7 +34,7 @@ t_vector	vector_sum(t_vector a, t_vector b)
 
 t_vector	vector_int_div(t_vector a, double b)
 {
-	t_vector c;
+	t_vector	c;
 
 	c.x = a.x / b;
 	c.y = a.y / b;
@@ -44,7 +44,7 @@ t_vector	vector_int_div(t_vector a, double b)
 
 t_vector	vector_int_mult(t_vector a, double b)
 {
-	t_vector c;
+	t_vector	c;
 
 	c.x = a.x * b;
 	c.y = a.y * b;
@@ -54,7 +54,7 @@ t_vector	vector_int_mult(t_vector a, double b)
 
 double		scal_mult(t_vector a, t_vector b)
 {
-	double c;
+	double	c;
 
 	c = a.x * b.x + a.y * b.y + a.z * b.z;
 	return (c);
