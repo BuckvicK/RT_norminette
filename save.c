@@ -185,6 +185,56 @@ void		put_something_3(t_rtv1 *rtv1, int fd, int i)
 	ft_putstr_fd("\n}\n\n", fd);
 }
 
+void		put_objs(t_rtv1 *rtv1, int fd, int i)
+{
+	put_name_obj(rtv1, fd, i);
+	put_position(rtv1, fd, i);
+	put_position_2(rtv1, fd, i);
+	put_position_3(rtv1, fd, i);
+	put_something_1(rtv1, fd, i);
+	put_something_2(rtv1, fd, i);
+	put_something_3(rtv1, fd, i);
+}
+
+void		put_light_1(t_rtv1 *rtv1, int fd, int i)
+{
+	ft_putstr_fd("new light\n{\n\ttype = ", fd);
+	if (rtv1->scene.lights[i].type == point)
+		ft_putstr_fd("point\n", fd);
+	else if (rtv1->scene.lights[i].type == ambient)
+		ft_putstr_fd("ambient\n", fd);
+	else if (rtv1->scene.lights[i].type == directional)
+		ft_putstr_fd("directional\n", fd);
+}
+
+void		put_light_2(t_rtv1 *rtv1, int fd, int i)
+{
+	char	*tmp;
+
+	ft_putstr_fd("\tintensity = ", fd);
+	ft_putstr_fd(tmp = ft_ftoa(rtv1->scene.lights[i].intensity), fd);
+	free(tmp);
+	ft_putstr_fd("\n\tposition = (", fd);
+	ft_putstr_fd(tmp = ft_ftoa(rtv1->scene.lights[i].center.x), fd);
+	free(tmp);
+	ft_putstr_fd(", ", fd);
+	ft_putstr_fd(tmp = ft_ftoa(rtv1->scene.lights[i].center.y), fd);
+	free(tmp);
+	ft_putstr_fd(", ", fd);
+	ft_putstr_fd(tmp = ft_ftoa(rtv1->scene.lights[i].center.z), fd);
+	free(tmp);
+	ft_putstr_fd(")\n\tdirection = (", fd);
+	ft_putstr_fd(tmp = ft_ftoa(rtv1->scene.lights[i].dir.x), fd);
+	free(tmp);
+	ft_putstr_fd(", ", fd);
+	ft_putstr_fd(tmp = ft_ftoa(rtv1->scene.lights[i].dir.y), fd);
+	free(tmp);
+	ft_putstr_fd(", ", fd);
+	ft_putstr_fd(tmp = ft_ftoa(rtv1->scene.lights[i].dir.z), fd);
+	free(tmp);
+	ft_putstr_fd(")\n}\n", fd);
+}
+
 void		save(t_rtv1 *rtv1, char *filename)
 {
 	int		fd;
@@ -197,47 +247,14 @@ void		save(t_rtv1 *rtv1, char *filename)
 	i = 0;
 	while (i < rtv1->scene.c_objs)
 	{
-		put_name_obj(rtv1, fd, i);
-		put_position(rtv1, fd, i);
-		put_position_2(rtv1, fd, i);
-		put_position_3(rtv1, fd, i);
-		put_something_1(rtv1, fd, i);
-		put_something_2(rtv1, fd, i);
-		put_something_3(rtv1, fd, i);
+		put_objs(rtv1, fd, i);
 		i++;
 	}
 	i = 0;
 	while (i < rtv1->scene.c_lights)
 	{
-		ft_putstr_fd("new light\n{\n\ttype = ", fd);
-		if (rtv1->scene.lights[i].type == point)
-			ft_putstr_fd("point\n", fd);
-		else if (rtv1->scene.lights[i].type == ambient)
-			ft_putstr_fd("ambient\n", fd);
-		else if (rtv1->scene.lights[i].type == directional)
-			ft_putstr_fd("directional\n", fd);
-		ft_putstr_fd("\tintensity = ", fd);
-		ft_putstr_fd(tmp = ft_ftoa(rtv1->scene.lights[i].intensity), fd);
-		free(tmp);
-		ft_putstr_fd("\n\tposition = (", fd);
-		ft_putstr_fd(tmp = ft_ftoa(rtv1->scene.lights[i].center.x), fd);
-		free(tmp);
-		ft_putstr_fd(", ", fd);
-		ft_putstr_fd(tmp = ft_ftoa(rtv1->scene.lights[i].center.y), fd);
-		free(tmp);
-		ft_putstr_fd(", ", fd);
-		ft_putstr_fd(tmp = ft_ftoa(rtv1->scene.lights[i].center.z), fd);
-		free(tmp);
-		ft_putstr_fd(")\n\tdirection = (", fd);
-		ft_putstr_fd(tmp = ft_ftoa(rtv1->scene.lights[i].dir.x), fd);
-		free(tmp);
-		ft_putstr_fd(", ", fd);
-		ft_putstr_fd(tmp = ft_ftoa(rtv1->scene.lights[i].dir.y), fd);
-		free(tmp);
-		ft_putstr_fd(", ", fd);
-		ft_putstr_fd(tmp = ft_ftoa(rtv1->scene.lights[i].dir.z), fd);
-		free(tmp);
-		ft_putstr_fd(")\n}\n", fd);
+		put_light_1(rtv1, fd, i);
+		put_light_2(rtv1, fd, i);
 		i++;
 	}
 	ft_putstr_fd("\n\nend", fd);
