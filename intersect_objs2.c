@@ -81,10 +81,8 @@
 ** 	return (0.0);
 ** }
 */
-
-double		ray_intersect_arrow(t_vector start, t_vector dir, t_obj *cyl)
-{
-	double		zeroThreshold = 0.0001;
+/*
+	double		zeroThreshold;
 	t_vector	tmp = start;
 	start = vector_subt(start, cyl->center);
 
@@ -96,16 +94,51 @@ double		ray_intersect_arrow(t_vector start, t_vector dir, t_obj *cyl)
 	double c = scal_mult(start, start) - dot_start_cyl_dir * dot_start_cyl_dir - 0.05 * 0.05;
 	double D = b * b - 4 * a * c;
 
-	if ( D < zeroThreshold )
+	double		dot_start_cyl_dir;	arr[0]
+	double		dot_dir_cyl_dir;	arr[1]
+	double		a;					arr[2]
+	double		b;					arr[3]
+	double		c;					arr[4]
+	double		D;					arr[5]
+
+	double		arr[6];					arr[6]
+	double		t1;					arr[7]
+	double		t2;					arr[8]
+	double		t;					arr[9]
+*/
+
+void		ray_intersect_arrow_1(t_vector start, t_vector dir, t_obj *cyl,
+									double *arr)
+{
+	arr[0] = scal_mult(start, cyl->dir);
+	arr[1] = scal_mult(dir, cyl->dir);
+	arr[2] = scal_mult(dir, dir) - arr[1] * arr[1];
+	arr[3] = 2 * (scal_mult(dir, start) - arr[1] * arr[0]);
+	arr[4] = scal_mult(start, start) - arr[0] * arr[0] - 0.05 * 0.05;
+	arr[5] = arr[3] * arr[3] - 4 * arr[2] * arr[4];
+}
+
+double		ray_intersect_arrow(t_vector start, t_vector dir, t_obj *cyl)
+{
+	t_vector	tmp;
+	t_vector	hitpoint;
+	double		zero_threshold;
+	double		arr[10];
+
+	zero_threshold = 0.0001;
+	tmp = start;
+	start = vector_subt(start, cyl->center);
+	ray_intersect_arrow_1(start, dir, cyl, arr);
+	if ( arr[5] < zero_threshold )
 		return (0.0);
-	double qD = sqrt(D);
-	double t1 = (-b + qD) / (2 * a); 
-	double t2 = (-b - qD) / (2 * a);
-	if (t1 <= zeroThreshold)
+	arr[6] = sqrt(arr[5]);
+	arr[7] = (-arr[3] + arr[6]) / (2 * arr[2]); 
+	arr[8] = (-arr[3] - arr[6]) / (2 * arr[2]);
+	if (arr[7] <= zero_threshold)
 		return (0.0);
-	double t = (t2 > zeroThreshold) ? t2 : t1; 
-	t_vector hitpoint = vector_sum(vector_int_mult(dir, t), tmp);
+	arr[9] = (arr[8] > zero_threshold) ? arr[8] : arr[7]; 
+	hitpoint = vector_sum(vector_int_mult(dir, arr[9]), tmp);
 	if (vector_length(vector_subt(hitpoint, cyl->center)) > 0.5)
 		return (0.0);
-	return (t);
+	return (arr[9]);
 }
