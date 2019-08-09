@@ -68,7 +68,7 @@ void		kernel_init(t_rtv1 *rtv1)
 {
 	rtv1->ret = clGetPlatformIDs(1, &rtv1->platform_id,
 		&rtv1->ret_num_platforms);
-	rtv1->ret = clGetDeviceIDs(rtv1->platform_id, CL_DEVICE_TYPE_CPU,
+	rtv1->ret = clGetDeviceIDs(rtv1->platform_id, CL_DEVICE_TYPE_GPU,
 		1, &rtv1->device_id, &rtv1->ret_num_devices);
 	rtv1->context = clCreateContext(NULL, 1, &rtv1->device_id, NULL,
 		NULL, &rtv1->ret);
