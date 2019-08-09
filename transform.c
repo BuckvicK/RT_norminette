@@ -142,6 +142,7 @@ void			select_object(t_rtv1 *rtv1, int x, int y, t_obj **out)
 	rtv1->selected_t = 9999999.9;
 	ptr = get_closest_object(&(rtv1->selected_t), rtv1->scene.camera.center,
 			pixel_pos_3d, &(rtv1->scene));
+	select_object_1(rtv1, ptr, out);
 }
 
 void			move_polygonal(double x, double y, double z, t_rtv1 *rtv1)
