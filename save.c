@@ -267,7 +267,8 @@ void		save_as(t_rtv1 *rtv1)
 	char	full_name[256];
 	char	base_name[64];
 
-	ft_strcpy(base_name, rtv1->edits[libui_geteditwithfunction(rtv1->edits,\
+	ft_strcpy(base_name, \
+		rtv1->edits[libui_geteditwithfunction(rtv1->edits, \
 		rtv1->c_edits, "Name")].text);
 	if (ft_strlen(base_name))
 	{
