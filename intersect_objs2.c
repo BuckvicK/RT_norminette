@@ -124,14 +124,14 @@ double		ray_intersect_arrow(t_vector start, t_vector dir, t_obj *cyl)
 	tmp = start;
 	start = vector_subt(start, cyl->center);
 	ray_intersect_arrow_1(start, dir, cyl, arr);
-	if ( arr[5] < zero_threshold )
+	if (arr[5] < zero_threshold)
 		return (0.0);
 	arr[6] = sqrt(arr[5]);
-	arr[7] = (-arr[3] + arr[6]) / (2 * arr[2]); 
+	arr[7] = (-arr[3] + arr[6]) / (2 * arr[2]);
 	arr[8] = (-arr[3] - arr[6]) / (2 * arr[2]);
 	if (arr[7] <= zero_threshold)
 		return (0.0);
-	arr[9] = (arr[8] > zero_threshold) ? arr[8] : arr[7]; 
+	arr[9] = (arr[8] > zero_threshold) ? arr[8] : arr[7];
 	hitpoint = vector_sum(vector_int_mult(dir, arr[9]), tmp);
 	if (vector_length(vector_subt(hitpoint, cyl->center)) > 0.5)
 		return (0.0);

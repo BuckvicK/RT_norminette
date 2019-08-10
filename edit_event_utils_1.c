@@ -27,7 +27,7 @@ void	edit_mouse_pressed_4(char *func, t_rtv1 *rtv1)
 	else if (!ft_strcmp(func, "Rand Color"))
 	{
 		rtv1->selected->tex = -1;
-		rtv1->selected->rgb = (t_rgb){rand() % 255, 
+		rtv1->selected->rgb = (t_rgb){rand() % 255,
 							rand() % 255, rand() % 255};
 	}
 }
@@ -46,7 +46,7 @@ void	edit_mouse_pressed_3(char *func, t_rtv1 *rtv1)
 		if (rtv1->selected->smoothness < 0.0)
 			rtv1->selected->smoothness = 0.0;
 	}
-	else 
+	else
 		edit_mouse_pressed_4(func, rtv1);
 }
 

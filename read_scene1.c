@@ -76,7 +76,6 @@ void			read_file_to_line(int fd, char **ret)
 	(*ret)[0] = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
-		
 		ft_strcat(*ret, line);
 		ft_strcat(*ret, "\n");
 		free(line);
@@ -97,7 +96,7 @@ int				check_crypto_key(char *file_name)
 	get_next_line(fd, &key_from_file);
 	read_file_to_line(fd, &str);
 	key = get_crypto_key(str);
-	ret = ft_strcmp(key ,key_from_file);
+	ret = ft_strcmp(key, key_from_file);
 	free(key);
 	free(key_from_file);
 	free(str);
@@ -114,7 +113,7 @@ void			read_scene(t_scene *scene, char *file_name)
 	if ((fd = open(file_name, O_RDONLY)) < 0)
 		err_exit();
 	get_next_line(fd, &line);
-	free (line);
+	free(line);
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		read_line_set_scene(line, scene);

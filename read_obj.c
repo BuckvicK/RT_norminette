@@ -74,8 +74,8 @@ t_obj		generate_polygon(char *line, t_vector *points)
 
 void		get_polygons(t_rtv1 *rtv1, t_vector *points, char *file_name)
 {
-	int 	fd;
-	int 	i;
+	int		fd;
+	int		i;
 	char	*str;
 	char	*line;
 

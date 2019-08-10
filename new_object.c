@@ -31,7 +31,6 @@ int		get_free_id(t_rtv1 *rtv1)
 		{
 			if (rtv1->scene.objs[arr[1]].id == arr[0])
 				break;
-			
 			arr[1]++;
 			if (arr[1] == rtv1->scene.c_objs)
 				arr[2] = 1;
@@ -42,7 +41,6 @@ int		get_free_id(t_rtv1 *rtv1)
 	}
 	return (arr[0]);
 }
-
 
 void	new_sphere(t_rtv1 *rtv1)
 {

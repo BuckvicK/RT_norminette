@@ -20,7 +20,7 @@ static int	strlen_while_dig(char *str)
 	while (str)
 	{
 		if (!ft_isdigit(*str))
-			break ;
+			break;
 		str++;
 		len++;
 	}
