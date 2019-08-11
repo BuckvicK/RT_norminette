@@ -90,6 +90,116 @@ t_vector			rot_v(t_vector P, t_vector ax, double a)
 	return (ret);
 }
 
+void				mouse_move_1_1_1(int dx, int dy, t_rtv1 *rtv1)
+{
+	if (rtv1->selected->type == triangle)
+		move_polygonal(0.001 * dx * rtv1->selected_t *
+			(cos(rtv1->scene.view_beta) > 0 ? 1 : -1), 0.0, 0.0, rtv1);
+	else
+		rtv1->selected->center.x += 0.001 * dx * rtv1->selected_t *
+			(cos(rtv1->scene.view_beta) > 0 ? 1 : -1);
+}
+
+void				mouse_move_1_1(int dx, int dy, t_rtv1 *rtv1)
+{
+	if (rtv1->arrow == 0)
+		mouse_move_1_1_1(dx, dy, rtv1);
+	else if (rtv1->arrow == 1)
+	{
+		if (rtv1->selected->type == triangle)
+			move_polygonal(0.0, -0.001 * dy * rtv1->selected_t, 0.0, rtv1);
+		else
+			rtv1->selected->center.y -= 0.001 * dy * rtv1->selected_t;
+	}
+	else if (rtv1->arrow == 2)
+	{
+		if (rtv1->selected->type == triangle)
+			move_polygonal(0.0, 0.0, 0.001 * dx * rtv1->selected_t *
+				(sin(rtv1->scene.view_beta) > 0 ? 1 : -1), rtv1);
+		else
+			rtv1->selected->center.z += 0.001 * dx * rtv1->selected_t *
+				(sin(rtv1->scene.view_beta) > 0 ? 1 : -1);
+	}
+	set_arrows_pos(rtv1, 0);
+}
+
+void				mouse_move_1(int x, int y, t_rtv1 *rtv1)
+{
+	int		dx;
+	int		dy;
+
+	dx = x - rtv1->prev_x;
+	dy = y - rtv1->prev_y;
+	if (rtv1->selected && rtv1->arrow != -1 && !rtv1->selected_light)
+		mouse_move_1_1(dx, dy, rtv1);
+	else if (rtv1->selected_light && rtv1->arrow != -1)
+	{
+		rtv1->selected_t = vector_length(vector_subt(\
+			rtv1->scene.camera.center, rtv1->selected_light->center));
+		if (rtv1->arrow == 0)
+			rtv1->selected_light->center.x += 0.001 * dx * rtv1->selected_t *
+				(cos(rtv1->scene.view_beta) > 0 ? 1 : -1);
+		else if (rtv1->arrow == 1)
+			rtv1->selected_light->center.y -= 0.001 * dy * rtv1->selected_t;
+		else if (rtv1->arrow == 2)
+			rtv1->selected_light->center.z += 0.001 * dx * rtv1->selected_t *
+				(sin(rtv1->scene.view_beta) > 0 ? 1 : -1);
+		set_arrows_pos(rtv1, 1);
+	}
+}
+
+void				mouse_move_2_1_1(int dx, int dy, t_rtv1 *rtv1)
+{
+	if (rtv1->selected->type == triangle)
+		rot_polygonal(0.05 * dy, 0.0, 0.0, rtv1);
+	else
+		rtv1->selected->dir = vector_normalize(rot(rtv1->selected->dir,
+		(t_vector){0.05 * dy, 0.0, 0.0}));
+}
+
+void				mouse_move_2_1(int dx, int dy, t_rtv1 *rtv1)
+{
+	if (rtv1->arrow == 0)
+		mouse_move_2_1_1(dx, dy, rtv1);
+	else if (rtv1->arrow == 1)
+	{
+		if (rtv1->selected->type == triangle)
+			rot_polygonal(0.0, 0.05 * dx, 0.0, rtv1);
+		else
+			rtv1->selected->dir = vector_normalize(rot(rtv1->selected->dir,
+			(t_vector){0.0, 0.05 * dx, 0.0}));
+	}
+	else if (rtv1->arrow == 2)
+	{
+		if (rtv1->selected->type == triangle)
+			rot_polygonal(0.0, 0.0, 0.05 * dy, rtv1);
+		else
+			rtv1->selected->dir = vector_normalize(rot(rtv1->selected->dir,
+			(t_vector){0.0, 0.0, 0.05 * dy}));
+	}
+}
+
+void				mouse_move_2(int x, int y, t_rtv1 *rtv1)
+{
+	int		dx;
+	int		dy;
+
+	dx = x - rtv1->prev_x;
+	dy = y - rtv1->prev_y;
+	if (!(rtv1->selected))
+		rtv1->selected = &(rtv1->scene.objs[0]);
+	if (rtv1->selected->type == sphere)
+	{
+		rtv1->selected->rot.y -= 0.05 * dx;
+		rtv1->selected->rot.x += 0.05 * dy;
+	}
+	else
+	{
+		if (rtv1->selected && rtv1->arrow != -1)
+			mouse_move_2_1(dx, dy, rtv1);
+	}
+}
+
 int					mouse_move(int x, int y, t_rtv1 *rtv1)
 {
 	int		dx;
@@ -103,88 +213,31 @@ int					mouse_move(int x, int y, t_rtv1 *rtv1)
 		rtv1->scene.view_beta += atan((double)dx * 0.001);
 	}
 	else if (rtv1->left_mouse_pressed)
-	{
-		dx = x - rtv1->prev_x;
-		dy = y - rtv1->prev_y;
-		if (rtv1->selected && rtv1->arrow != -1 && !rtv1->selected_light)
-		{
-			if (rtv1->arrow == 0)
-			{
-				if (rtv1->selected->type == triangle)
-					move_polygonal(0.001 * dx * rtv1->selected_t * (cos(rtv1->scene.view_beta) > 0 ? 1 : -1), 0.0, 0.0, rtv1);
-				else
-					rtv1->selected->center.x += 0.001 * dx * rtv1->selected_t * (cos(rtv1->scene.view_beta) > 0 ? 1 : -1);
-			}
-			else if (rtv1->arrow == 1)
-			{
-				if (rtv1->selected->type == triangle)
-					move_polygonal(0.0, -0.001 * dy * rtv1->selected_t ,0.0, rtv1);
-				else
-					rtv1->selected->center.y -= 0.001 * dy * rtv1->selected_t;
-			}
-			else if (rtv1->arrow == 2)
-			{
-				if (rtv1->selected->type == triangle)
-					move_polygonal(0.0, 0.0, 0.001 * dx * rtv1->selected_t * (sin(rtv1->scene.view_beta) > 0 ? 1 : -1), rtv1);
-				else
-					rtv1->selected->center.z += 0.001 * dx * rtv1->selected_t * (sin(rtv1->scene.view_beta) > 0 ? 1 : -1);
-			}
-			set_arrows_pos(rtv1, 0);
-		}
-		else if (rtv1->selected_light && rtv1->arrow != -1)
-		{
-			rtv1->selected_t = vector_length(vector_subt(rtv1->scene.camera.center, rtv1->selected_light->center));
-			if (rtv1->arrow == 0)
-				rtv1->selected_light->center.x += 0.001 * dx * rtv1->selected_t * (cos(rtv1->scene.view_beta) > 0 ? 1 : -1);
-			else if (rtv1->arrow == 1)
-				rtv1->selected_light->center.y -= 0.001 * dy * rtv1->selected_t;
-			else if (rtv1->arrow == 2)
-				rtv1->selected_light->center.z += 0.001 * dx * rtv1->selected_t * (sin(rtv1->scene.view_beta) > 0 ? 1 : -1);
-			set_arrows_pos(rtv1, 1);
-		}
-	}
+		mouse_move_1(x, y, rtv1);
 	else if (rtv1->mid_mouse_pressed)
-	{
-		dx = x - rtv1->prev_x;
-		dy = y - rtv1->prev_y;
-		if (!(rtv1->selected))
-			rtv1->selected = &(rtv1->scene.objs[0]);
-		if (rtv1->selected->type == sphere)
-		{
-			rtv1->selected->rot.y -= 0.05 * dx;
-			rtv1->selected->rot.x += 0.05 * dy;
-		}
-		else
-		{
-			if (rtv1->selected && rtv1->arrow != -1)
-			{
-				if (rtv1->arrow == 0)
-				{
-					if (rtv1->selected->type == triangle)
-						rot_polygonal(0.05 * dy, 0.0, 0.0, rtv1);
-					else
-						rtv1->selected->dir = vector_normalize(rot(rtv1->selected->dir, (t_vector){0.05 * dy, 0.0, 0.0}));
-				}
-				else if (rtv1->arrow == 1)
-				{
-					if (rtv1->selected->type == triangle)
-						rot_polygonal(0.0, 0.05 * dx, 0.0, rtv1);
-					else
-						rtv1->selected->dir = vector_normalize(rot(rtv1->selected->dir, (t_vector){0.0, 0.05 * dx, 0.0}));
-				}
-				else if (rtv1->arrow == 2)
-				{
-					if (rtv1->selected->type == triangle)
-						rot_polygonal(0.0, 0.0, 0.05 * dy, rtv1);
-					else
-						rtv1->selected->dir = vector_normalize(rot(rtv1->selected->dir, (t_vector){0.0, 0.0, 0.05 * dy}));
-				}
-			}
-		}
-	}
+		mouse_move_2(x, y, rtv1);
 	rtv1->prev_x = x;
 	rtv1->prev_y = y;
 	return (0);
+}
+
+void				key_pressed_1(int key, t_rtv1 *rtv1)
+{
+	if (key == SDLK_UP)
+		rtv1->scene.camera.center.y += 0.5;
+	else if (key == SDLK_DOWN)
+		rtv1->scene.camera.center.y -= 0.5;
+	else if (key == SDLK_KP_PLUS)
+		rtv1->selected->center.z += 0.2;
+	else if (key == SDLK_KP_MINUS)
+		rtv1->selected->center.z -= 0.2;
+	else if (key == SDLK_s)
+	{
+		if (rtv1->scene.shadows_on == 1)
+			rtv1->scene.shadows_on = 0;
+		else
+			rtv1->scene.shadows_on = 1;
+	}
 }
 
 int					key_pressed(int key, t_rtv1 *rtv1)
@@ -206,21 +259,8 @@ int					key_pressed(int key, t_rtv1 *rtv1)
 		rtv1->scene.camera.center.x -= 0.5 * cos(rtv1->scene.view_beta);
 		rtv1->scene.camera.center.z -= 0.5 * sin(rtv1->scene.view_beta);
 	}
-	else if (key == SDLK_UP)
-		rtv1->scene.camera.center.y += 0.5;
-	else if (key == SDLK_DOWN)
-		rtv1->scene.camera.center.y -= 0.5;
-	else if (key == SDLK_KP_PLUS)
-		rtv1->selected->center.z += 0.2;
-	else if (key == SDLK_KP_MINUS)
-		rtv1->selected->center.z -= 0.2;
-	else if (key == SDLK_s)
-	{
-		if (rtv1->scene.shadows_on == 1)
-			rtv1->scene.shadows_on = 0;
-		else
-			rtv1->scene.shadows_on = 1;
-	}
+	else
+		key_pressed_1(key, rtv1);
 	if (key == 1073742049)
 		rtv1->shift_pressed = 1;
 	return (0);
