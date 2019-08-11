@@ -29,7 +29,7 @@ t_s			q_init(t_vector dir, t_obj *parab, double *arr, t_vector *vec)
 	return (q);
 }
 
-double		norm_2(t_s *q, t_vector *vec, double *arr, t_obj *parab)
+double		norm(t_s *q, t_vector *vec, double *arr, t_obj *parab)
 {
 	q->sq_diskr = sqrt(q->diskr);
 	q->t = (-q->b - q->sq_diskr) / q->a;
@@ -72,7 +72,7 @@ double		ray_intersect_paraboloid(t_vector start, t_vector dir,
 	q = q_init(dir, parab, arr, vec);
 	if ((q.diskr = q.b * q.b - 2.f * q.a * q.c) >= 0.f)
 	{
-		return (norm_2(&q, vec, arr, parab));
+		return (norm(&q, vec, arr, parab));
 	}
 	return (0);
 }
